@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI EssayGo - 南一智慧作文批改系統</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/ai-essay-go.css">
+</head>
+<body>
+    <!-- 格線背景 -->
+    <div class="grid-background"></div>
+
+    <!-- 主容器 -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="Asset/Ai EssayGo Logo - L.svg" alt="AI EssayGo Logo" class="logo-image">
+                </div>
+                <div class="header-right">
+                    <div class="usage-info">
+                        <div class="usage-icon">
+                            <img src="Asset/coins_solid.svg" alt="Coins Icon" class="usage-icon-image">
+                        </div>
+                        <div class="usage-text">本學期剩餘 299 次</div>
+                    </div>
+                    <button class="account-button">
+                        <div class="account-avatar">
+                            <img src="Asset/IconButton.svg" alt="Account Avatar" class="account-avatar-image">
+                        </div>
+                        <div class="account-name">王老師</div>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- 內容區域 -->
+        <main class="content">
+            <!-- Banner -->
+            <section class="banner">
+                <div class="banner-container">
+                    <!-- 左側頁面插圖 -->
+                    <div class="banner-illustration-left">
+                        <img src="Asset/Image-page.svg" alt="頁面插圖" class="page-illustration">
+                    </div>
+                    
+                    <!-- 中間內容區域 -->
+                    <div class="banner-content">
+                        <div class="banner-header">
+                            <img src="Asset/Frame 8312549.svg" alt="AI EssayGo" class="banner-logo">
+                        </div>
+                        <div class="banner-features">
+                            <span class="feature-tag">AI 智慧分析</span>
+                            <span class="feature-tag">個人化回饋</span>
+                            <span class="feature-tag">輕鬆上手</span>
+                        </div>
+                        <p class="banner-description">
+                            透過 AI 精準分析結構安排、文辭表達，<br>
+                            快速提供個人化專屬寫作建議，提升寫作能力！
+                        </p>
+                    </div>
+                    
+                    <!-- 右側鉛筆插圖 -->
+                    <div class="banner-illustration-right">
+                        <img src="Asset/Image-pencil.svg" alt="鉛筆插圖" class="pencil-illustration">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 上傳區域 -->
+            <section class="upload-section">
+                <div class="section-header">
+                    <div class="frame">
+                        <div class="text-wrapper">一、上傳作文</div>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="toggle-container">
+                        <button class="toggle-button active" onclick="switchUploadType('file')">檔案上傳</button>
+                        <button class="toggle-button" onclick="switchUploadType('text')">文字上傳</button>
+                    </div>
+                    <div class="upload-area">
+                        <div class="upload-illustration">
+                            <img src="Asset/illustration_upload.svg" alt="上傳插圖" class="upload-image">
+                        </div>
+                        <div class="upload-content">
+                            <div class="upload-text-group">
+                                <div class="upload-text">點擊或拖曳檔案上傳作文圖片</div>
+                                <div class="upload-hint">
+                                    <span class="upload-limit">最多 2 個檔案</span>，<span class="upload-format">支援 PDF、JPG、PNG、TXT 格式，檔案大小不超過10MB</span>
+                                </div>
+                            </div>
+                            <button class="select-file-button" onclick="triggerFileUpload()">
+                                選擇檔案
+                            </button>
+                        </div>
+                    </div>
+                    <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png,.txt" style="display: none;">
+                </div>
+            </section>
+
+            <!-- 表單區域 -->
+            <section class="form-section">
+                <div class="section-header">
+                    <div class="frame">
+                        <div class="text-wrapper">二、填寫批改資訊</div>
+                    </div>
+                </div>
+                <div class="form-content">
+                    <div class="form-group">
+                        <label class="form-label">學制（必填）</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="education" value="elementary" checked class="radio-input">
+                                <span class="radio-label">國小</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="education" value="junior" class="radio-input">
+                                <span class="radio-label">國中</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="education" value="senior" class="radio-input">
+                                <span class="radio-label">高中</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">作文標題（必填）</label>
+                        <input type="text" class="text-input" placeholder="例如：我最喜歡的老師">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">進階設定（選填）</label>
+                        <div class="accordion" onclick="toggleAccordion(this)">
+                            <div class="accordion-header">
+                                <span class="accordion-title">能力指標</span>
+                                <div class="accordion-icon">▼</div>
+                            </div>
+                            <div class="accordion-content">
+                                <p>這裡可以展開更多進階設定選項...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 主要按鈕 -->
+            <button class="main-button" onclick="startCorrection()">
+                開始批改
+            </button>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            © NANI BOOK ENTERPRISE CO., LTD. All Rights Reserved.
+        </footer>
+    </div>
+
+    <script src="scripts/ai-essay-go.js"></script>
+</body>
+</html>
