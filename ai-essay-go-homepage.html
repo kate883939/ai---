@@ -84,22 +84,27 @@
                         <button class="toggle-button" onclick="switchUploadType('text')">文字上傳</button>
                     </div>
                     <div class="upload-area">
-                        <div class="upload-illustration">
-                            <img src="Asset/illustration_upload.svg" alt="上傳插圖" class="upload-image">
-                        </div>
-                        <div class="upload-content">
-                            <div class="upload-text-group">
-                                <div class="upload-text">點擊或拖曳檔案上傳作文圖片</div>
-                                <div class="upload-hint">
-                                    <span class="upload-limit">最多 2 個檔案</span>，<span class="upload-format">支援 PDF、JPG、PNG、TXT 格式，檔案大小不超過10MB</span>
-                                </div>
+                        <div class="upload-container">
+                            <div class="upload-illustration">
+                                <img src="Asset/illustration_upload.svg" alt="上傳插圖" class="upload-image">
                             </div>
-                            <button class="select-file-button" onclick="triggerFileUpload()">
-                                選擇檔案
-                            </button>
+                            <div class="upload-instructions">
+                                <div class="upload-text-group">
+                                    <div class="upload-title">點擊或拖曳檔案上傳作文圖片</div>
+                                    <div class="upload-description">最多 2 個檔案，支援 PDF、JPG、PNG、TXT 格式，檔案大小不超過10MB</div>
+                                </div>
+                                <button class="upload-button" onclick="triggerFileUpload()">
+                                    選擇檔案
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png,.txt" style="display: none;">
+                    
+                    <!-- 檔案列表區域 -->
+                    <div id="fileListContainer" style="display: none;">
+                        <!-- FileList component 會在這裡渲染 -->
+                    </div>
                 </div>
             </section>
 
@@ -136,13 +141,75 @@
 
                     <div class="form-group">
                         <label class="form-label">進階設定（選填）</label>
-                        <div class="accordion" onclick="toggleAccordion(this)">
-                            <div class="accordion-header">
-                                <span class="accordion-title">能力指標</span>
-                                <div class="accordion-icon">▼</div>
+                        <div class="accordion-container">
+                            <div class="accordion" onclick="toggleAccordion(this)">
+                                <div class="accordion-header">
+                                    <span class="accordion-title">進階設定</span>
+                                    <div class="accordion-status">
+                                        <span class="accordion-status-text">展開</span>
+                                        <div class="accordion-icon">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="accordion-content">
-                                <p>這裡可以展開更多進階設定選項...</p>
+                                <div class="accordion-content-inner">
+                                    <div class="form-group">
+                                        <label class="form-label">1. 預期字數（上限 1,000）</label>
+                                        <input type="text" class="text-input" placeholder="例如：800">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label">3. 作文文體（單選）</label>
+                                        <div class="radio-group">
+                                            <label class="radio-item">
+                                                <input type="radio" name="essayType" value="unspecified" checked class="radio-input">
+                                                <span class="radio-label">不指定</span>
+                                            </label>
+                                            <label class="radio-item">
+                                                <input type="radio" name="essayType" value="narrative" class="radio-input">
+                                                <span class="radio-label">記敘文</span>
+                                            </label>
+                                            <label class="radio-item">
+                                                <input type="radio" name="essayType" value="practical" class="radio-input">
+                                                <span class="radio-label">應用文</span>
+                                            </label>
+                                            <label class="radio-item">
+                                                <input type="radio" name="essayType" value="argumentative" class="radio-input">
+                                                <span class="radio-label">議論文</span>
+                                            </label>
+                                            <label class="radio-item">
+                                                <input type="radio" name="essayType" value="lyrical" class="radio-input">
+                                                <span class="radio-label">抒情文</span>
+                                            </label>
+                                            <label class="radio-item">
+                                                <input type="radio" name="essayType" value="expository" class="radio-input">
+                                                <span class="radio-label">說明文</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label">4. 批改方向（可多選）</label>
+                                        <div class="checkbox-group">
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="correctionFocus" value="coherence" class="checkbox-input">
+                                                <span class="checkbox-label">注意段落銜接與首尾連貫性</span>
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="correctionFocus" value="rhetoric" class="checkbox-input">
+                                                <span class="checkbox-label">注重修辭技巧的使用</span>
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="correctionFocus" value="punctuation" class="checkbox-input">
+                                                <span class="checkbox-label">注重標點符號的使用時機</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -161,6 +228,7 @@
         </footer>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     <script src="scripts/ai-essay-go.js"></script>
 </body>
 </html>

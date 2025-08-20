@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Design Accordion 測試</title>
+    <style>
+        body {
+            font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .accordion-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .accordion {
+            border: none;
+            border-radius: 6px;
+            background: rgba(0, 161, 93, 0.08);
+            cursor: pointer;
+            transition: all 225ms cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 8px;
+        }
+
+        .accordion.active {
+            border-radius: 6px 6px 0px 0px;
+            background: rgba(0, 161, 93, 0.12);
+        }
+
+        .accordion-header {
+            padding: 8px 16px;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 225ms cubic-bezier(0.4, 0, 0.2, 1);
+            height: 56px;
+            box-sizing: border-box;
+        }
+
+        .accordion-title {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 1.333;
+            color: #212B36;
+        }
+
+        .accordion-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .accordion-status-text {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 1.375;
+            color: #212B36;
+        }
+
+        .accordion-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #212B36;
+            transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            background: rgba(145, 158, 171, 0.08);
+            border: none;
+            border-radius: 0px 0px 6px 6px;
+            position: relative;
+            z-index: 5;
+            overflow: hidden;
+            transition: height 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            height: 0;
+        }
+
+        .accordion-content-inner {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            height: auto;
+            min-height: fit-content;
+        }
+
+        .form-group {
+            margin: 0;
+            height: auto;
+            min-height: fit-content;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #212B36;
+            font-size: 16px;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            height: 56px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0px;
+            padding: 8px 0;
+        }
+
+        .radio-input {
+            width: 41px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            appearance: none;
+            position: relative;
+            transition: all 0.2s ease;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDEiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MSA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMC45NzE3IDIwQzEwLjk3MTcgMjUuNTIyOCAxNS40NDg4IDMwIDIwLjk3MTcgMzBDMjYuNDk0NSAzMCAzMC45NzE3IDI1LjUyMjggMzAuOTcxNyAyMEMzMC45NzE3IDE0LjQ3NzIgMjYuNDk0NSAxMCAyMC45NzE3IDEwQzE1LjQ0ODggMTAgMTAuOTcxNyAxNC40NzcyIDEwLjk3MTcgMjBaTTEyLjk3MTcgMjBDMTIuOTcxNyAxNS41ODE3IDE2LjU1MzQgMTIgMjAuOTcxNyAxMkMyNS4zOSAxMiAyOC45NzE3IDE1LjU4MTcgMjguOTcxNyAyMEMyOC45NzE3IDI0LjQxODMgMjUuMzkgMjggMjAuOTcxNyAyOEMxNi41NTM0IDI4IDEyLjk3MTcgMjQuNDE4MyAxMi45NzE3IDIwWiIgZmlsbD0iIzYzNzM4MSIvPgo8L3N2Zz4K');
+            background-size: 41px 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 20px;
+        }
+
+        .radio-input:hover {
+            background-color: rgba(99, 115, 129, 0.08);
+        }
+
+        .radio-input:checked {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDEiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MSA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMC45NzE3IDEwQzE1LjQ0ODggMTAgMTAuOTcxNyAxNC40NzcyIDEwLjk3MTcgMjBDMTAuOTcxNyAyNS41MjI4IDE1LjQ0ODggMzAgMjAuOTcxNyAzMEMyNi40OTQ1IDMwIDMwLjk3MTcgMjUuNTIyOCAzMC45NzE3IDIwQzMwLjk3MTcgMTcuMzQ3OCAyOS45MTgxIDE0LjgwNDMgMjguMDQyNyAxMi45Mjg5QzI2LjE2NzQgMTEuMDUzNiAyMy42MjM4IDEwIDIwLjk3MTcgMTBaTTIwLjk3MTcgMjhDMTYuNTUzNCAyOCAxMi45NzE3IDI0LjQxODMgMTIuOTcxNyAyMEMxMi45NzE3IDE1LjU4MTcgMTYuNTUzNCAxMiAyMC45NzE3IDEyQzI1LjM5IDEyIDI4Ljk3MTcgMTUuNTgxNyAyOC45NzE3IDIwQzI4Ljk3MTcgMjIuMTIxNyAyOC4xMjg4IDI0LjE1NjYgMjYuNjI4NSAyNS42NTY5QzI1LjEyODIgMjcuMTU3MSAyMy4wOTM0IDI4IDIwLjk3MTcgMjhaTTE1Ljk3MTcgMjBDMTUuOTcxNyAxNy4yMzg2IDE4LjIxMDMgMTUgMjAuOTcxNyAxNUMyMy43MzMxIDE1IDI1Ljk3MTcgMTcuMjM4NiAyNS45NzE3IDIwQzI1Ljk3MTcgMjIuNzYxNCAyMy43MzMxIDI1IDIwLjk3MTcgMjVDMTguMjEwMyAyNSAxNS45NzE3IDIyLjc2MTQgMTUuOTcxNyAyMFoiIGZpbGw9IiMwMEExNUQiLz4KPC9zdmc+Cg==');
+            background-size: 41px 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .radio-label {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.333;
+            color: #212B36;
+            cursor: default;
+            user-select: none;
+        }
+
+        h1 {
+            color: #212B36;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .description {
+            color: #637381;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Material Design Accordion 動畫測試</h1>
+        <p class="description">
+            參考 Material Design 標準的 accordion 動畫效果，使用 225ms 的 cubic-bezier(0.4, 0, 0.2, 1) 緩動函數，
+            提供流暢自然的展開/收合動畫。
+        </p>
+
+        <div class="accordion-container">
+            <div class="accordion" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    <span class="accordion-title">進階設定</span>
+                    <div class="accordion-status">
+                        <span class="accordion-status-text">展開</span>
+                        <div class="accordion-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-content-inner">
+                    <div class="form-group">
+                        <label class="form-label">1. 預期字數（上限 1,000）</label>
+                        <input type="text" class="text-input" placeholder="例如：800">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">2. 作文文體（單選）</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="essayType" value="unspecified" checked class="radio-input">
+                                <span class="radio-label">不指定</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="essayType" value="narrative" class="radio-input">
+                                <span class="radio-label">記敘文</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="essayType" value="practical" class="radio-input">
+                                <span class="radio-label">應用文</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-container">
+            <div class="accordion" onclick="toggleAccordion(this)">
+                <div class="accordion-header">
+                    <span class="accordion-title">第二個 Accordion</span>
+                    <div class="accordion-status">
+                        <span class="accordion-status-text">展開</span>
+                        <div class="accordion-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-content-inner">
+                    <div class="form-group">
+                        <label class="form-label">測試內容</label>
+                        <input type="text" class="text-input" placeholder="這是第二個 accordion 的內容">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAccordion(element) {
+            const isActive = element.classList.contains('active');
+            const statusText = element.querySelector('.accordion-status-text');
+            const accordionContent = element.nextElementSibling;
+            
+            element.classList.toggle('active');
+            
+            // 處理 accordion-content 的動畫效果
+            if (accordionContent && accordionContent.classList.contains('accordion-content')) {
+                if (isActive) {
+                    // 收合動畫 - 類似 Material UI Collapse
+                    const currentHeight = accordionContent.scrollHeight;
+                    accordionContent.style.height = currentHeight + 'px';
+                    
+                    // 強制重繪以確保動畫正確執行
+                    accordionContent.offsetHeight;
+                    
+                    // 開始收合動畫
+                    requestAnimationFrame(() => {
+                        accordionContent.style.height = '0px';
+                    });
+                } else {
+                    // 展開動畫 - 類似 Material UI Collapse
+                    accordionContent.style.height = '0px';
+                    
+                    // 強制重繪
+                    accordionContent.offsetHeight;
+                    
+                    // 計算目標高度並開始展開動畫
+                    requestAnimationFrame(() => {
+                        const targetHeight = accordionContent.scrollHeight;
+                        accordionContent.style.height = targetHeight + 'px';
+                        
+                                        // 動畫結束後設定為 auto，保持展開狀態
+                        setTimeout(() => {
+                            accordionContent.style.height = 'auto';
+                        }, 150);
+                    });
+                }
+            }
+            
+            // 更新狀態文字
+            if (statusText) {
+                statusText.textContent = isActive ? '展開' : '收合';
+            }
+        }
+    </script>
+</body>
+</html>

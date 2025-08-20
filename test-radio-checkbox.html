@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio & Checkbox 樣式測試</title>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 32px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #212B36;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 32px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 500;
+            color: #212B36;
+            font-size: 16px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0px;
+            padding: 8px 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0px;
+            padding: 8px 0;
+        }
+
+        .radio-input {
+            width: 41px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            appearance: none;
+            position: relative;
+            transition: all 0.2s ease;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDEiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MSA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMC45NzE3IDIwQzEwLjk3MTcgMjUuNTIyOCAxNS40NDg4IDMwIDIwLjk3MTcgMzBDMjYuNDk0NSAzMCAzMC45NzE3IDI1LjUyMjggMzAuOTcxNyAyMEMzMC45NzE3IDE0LjQ3NzIgMjYuNDk0NSAxMCAyMC45NzE3IDEwQzE1LjQ0ODggMTAgMTAuOTcxNyAxNC40NzcyIDEwLjk3MTcgMjBaTTEyLjk3MTcgMjBDMTIuOTcxNyAxNS41ODE3IDE2LjU1MzQgMTIgMjAuOTcxNyAxMkMyNS4zOSAxMiAyOC45NzE3IDE1LjU4MTcgMjguOTcxNyAyMEMyOC45NzE3IDI0LjQxODMgMjUuMzkgMjggMjAuOTcxNyAyOEMxNi41NTM0IDI4IDEyLjk3MTcgMjQuNDE4MyAxMi45NzE3IDIwWiIgZmlsbD0iIzYzNzM4MSIvPgo8L3N2Zz4K');
+            background-size: 41px 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 20px;
+        }
+
+        .radio-input:hover {
+            background-color: rgba(99, 115, 129, 0.08);
+        }
+
+        .radio-input:checked {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDEiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MSA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMC45NzE3IDEwQzE1LjQ0ODggMTAgMTAuOTcxNyAxNC40NzcyIDEwLjk3MTcgMjBDMTAuOTcxNyAyNS41MjI4IDE1LjQ0ODggMzAgMjAuOTcxNyAzMEMyNi40OTQ1IDMwIDMwLjk3MTcgMjUuNTIyOCAzMC45NzE3IDIwQzMwLjk3MTcgMTcuMzQ3OCAyOS45MTgxIDE0LjgwNDMgMjguMDQyNyAxMi45Mjg5QzI2LjE2NzQgMTEuMDUzNiAyMy42MjM4IDEwIDIwLjk3MTcgMTBaTTIwLjk3MTcgMjhDMTYuNTUzNCAyOCAxMi45NzE3IDI0LjQxODMgMTIuOTcxNyAyMEMxMi45NzE3IDE1LjU4MTcgMTYuNTUzNCAxMiAyMC45NzE3IDEyQzI1LjM5IDEyIDI4Ljk3MTcgMTUuNTgxNyAyOC45NzE3IDIwQzI4Ljk3MTcgMjIuMTIxNyAyOC4xMjg4IDI0LjE1NjYgMjYuNjI4NSAyNS42NTY5QzI1LjEyODIgMjcuMTU3MSAyMy4wOTM0IDI4IDIwLjk3MTcgMjhaTTE1Ljk3MTcgMjBDMTUuOTcxNyAxNy4yMzg2IDE4LjIxMDMgMTUgMjAuOTcxNyAxNUMyMy43MzMxIDE1IDI1Ljk3MTcgMTcuMjM4NiAyNS45NzE3IDIwQzI1Ljk3MTcgMjIuNzYxNCAyMy43MzMxIDI1IDIwLjk3MTcgMjVDMTguMjEwMyAyNSAxNS45NzE3IDIyLjc2MTQgMTUuOTcxNyAyMFoiIGZpbGw9IiMwMEExNUQiLz4KPC9zdmc+Cg==');
+            background-size: 41px 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .checkbox-input {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            appearance: none;
+            position: relative;
+            transition: all 0.2s ease;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI3IDkuNUMyOC45MzMgOS41IDMwLjUgMTEuMDY3IDMwLjUgMTNWMjdDMzAuNSAyOC45MzMgMjguOTMzIDMwLjUgMjcgMzAuNUgxM0MxMS4wNjcgMzAuNSA5LjUgMjguOTMzIDkuNSAyN1YxM0M5LjUgMTEuMDY3IDExLjA2NyA5LjUgMTMgOS41SDI3Wk0xMyAxMS44MzNDMTIuMzU1NyAxMS44MzMgMTEuODMzIDEyLjM1NTcgMTEuODMzIDEzVjI3QzExLjgzMyAyNy42NDQzIDEyLjM1NTcgMjguMTY3IDEzIDI4LjE2N0gyN0MyNy42NDQzIDI4LjE2NyAyOC4xNjcgMjcuNjQ0MyAyOC4xNjcgMjdWMTNDMjguMTY3IDEyLjM1NTcgMjcuNjQ0MyAxMS44MzMgMjcgMTEuODMzSDEzWiIgZmlsbD0iIzYzNzM4MSIvPgo8L3N2Zz4K');
+            background-size: 40px 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 20px;
+        }
+
+        .checkbox-input:hover {
+            background-color: rgba(99, 115, 129, 0.08);
+        }
+
+        .checkbox-input:checked {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI3IDkuNUMyOC45MzMgOS41IDMwLjUgMTEuMDY3IDMwLjUgMTNWMjdDMzAuNSAyOC45MzMgMjguOTMzIDMwLjUgMjcgMzAuNUgxM0MxMS4wNjcgMzAuNSA5LjUgMjguOTMzIDkuNSAyN1YxM0M5LjUgMTEuMDY3IDExLjA2NyA5LjUgMTMgOS41SDI3Wk0yNC4yMzM0IDE1LjMwMDhDMjMuODE3NyAxNS4yNDczIDIzLjQwNDcgMTUuNDE5OCAyMy4xNTA0IDE1Ljc1MjlMMTguNzQwMiAyMS41ODY5TDE2LjgzNzkgMTkuMTYwMkMxNi41ODE1IDE4LjgzMSAxNi4xNjkxIDE4LjY2MzQgMTUuNzU1OSAxOC43MjA3QzE1LjM0MjYgMTguNzc4MSAxNC45OTA5IDE5LjA1MTkgMTQuODM0IDE5LjQzODVDMTQuNjc3MyAxOS44MjQ5IDE0LjczOSAyMC4yNjU2IDE0Ljk5NTEgMjAuNTk0N0wxNy44NDE4IDI0LjIyMzZDMTguMDY0NCAyNC41MDUyIDE4LjQwNDcgMjQuNjY4OSAxOC43NjM3IDI0LjY2N0MxOS4xMjQ1IDI0LjY2NiAxOS40NjQ0IDI0LjQ5NzcgMTkuNjg0NiAyNC4yMTE5TDI1LjAxNjYgMTcuMjExOVYxNy4xNzY4QzI1LjI3MDkgMTYuODQzMyAyNS4zMjc3IDE2LjM5OTYgMjUuMTY2IDE2LjAxMjdDMjUuMDA0NCAxNS42MjU5IDI0LjY0OTEgMTUuMzU0NCAyNC4yMzM0IDE1LjMwMDhaIiBmaWxsPSIjMDBBMTVEIi8+Cjwvc3ZnPgo=');
+            background-size: 40px 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .radio-label, .checkbox-label {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.333;
+            color: #212B36;
+            cursor: default;
+            user-select: none;
+        }
+
+        .description {
+            color: #637381;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Radio & Checkbox 樣式測試</h1>
+        <p class="description">
+            測試新的 radio 和 checkbox 樣式：使用 SVG 圖示，hover 時有灰色圓形背景，勾選時顯示綠色圖示。
+        </p>
+
+        <div class="form-group">
+            <label class="form-label">作文文體（單選）</label>
+            <div class="radio-group">
+                <label class="radio-item">
+                    <input type="radio" name="essayType" value="unspecified" checked class="radio-input">
+                    <span class="radio-label">不指定</span>
+                </label>
+                <label class="radio-item">
+                    <input type="radio" name="essayType" value="narrative" class="radio-input">
+                    <span class="radio-label">記敘文</span>
+                </label>
+                <label class="radio-item">
+                    <input type="radio" name="essayType" value="practical" class="radio-input">
+                    <span class="radio-label">應用文</span>
+                </label>
+                <label class="radio-item">
+                    <input type="radio" name="essayType" value="argumentative" class="radio-input">
+                    <span class="radio-label">議論文</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">批改方向（可多選）</label>
+            <div class="checkbox-group">
+                <label class="checkbox-item">
+                    <input type="checkbox" name="correctionFocus" value="coherence" class="checkbox-input">
+                    <span class="checkbox-label">注意段落銜接與首尾連貫性</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="correctionFocus" value="rhetoric" class="checkbox-input">
+                    <span class="checkbox-label">注重修辭技巧的使用</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="correctionFocus" value="punctuation" class="checkbox-input">
+                    <span class="checkbox-label">注重標點符號的使用時機</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

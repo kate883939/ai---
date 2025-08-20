@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox 樣式測試</title>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 32px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #212B36;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 500;
+            color: #212B36;
+            font-size: 16px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+        }
+
+        .checkbox-input {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            appearance: none;
+            position: relative;
+            transition: all 0.2s ease;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI3IDkuNUMyOC45MzMgOS41IDMwLjUgMTEuMDY3IDMwLjUgMTNWMjdDMzAuNSAyOC45MzMgMjguOTMzIDMwLjUgMjcgMzAuNUgxM0MxMS4wNjcgMzAuNSA5LjUgMjguOTMzIDkuNSAyN1YxM0M5LjUgMTEuMDY3IDExLjA2NyA5LjUgMTMgOS41SDI3Wk0xMyAxMS44MzNDMTIuMzU1NyAxMS44MzMgMTEuODMzIDEyLjM1NTcgMTEuODMzIDEzVjI3QzExLjgzMyAyNy42NDQzIDEyLjM1NTcgMjguMTY3IDEzIDI4LjE2N0gyN0MyNy42NDQzIDI4LjE2NyAyOC4xNjcgMjcuNjQ0MyAyOC4xNjcgMjdWMTNDMjguMTY3IDEyLjM1NTcgMjcuNjQ0MyAxMS44MzMgMjcgMTEuODMzSDEzWiIgZmlsbD0iIzYzNzM4MSIvPgo8L3N2Zz4K');
+            background-size: 40px 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 20px;
+        }
+
+        .checkbox-input:hover {
+            background-color: rgba(99, 115, 129, 0.08);
+        }
+
+        .checkbox-input:checked {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI3IDkuNUMyOC45MzMgOS41IDMwLjUgMTEuMDY3IDMwLjUgMTNWMjdDMzAuNSAyOC45MzMgMjguOTMzIDMwLjUgMjcgMzAuNUgxM0MxMS4wNjcgMzAuNSA5LjUgMjguOTMzIDkuNSAyN1YxM0M5LjUgMTEuMDY3IDExLjA2NyA5LjUgMTMgOS41SDI3Wk0yNC4yMzM0IDE1LjMwMDhDMjMuODE3NyAxNS4yNDczIDIzLjQwNDcgMTUuNDE5OCAyMy4xNTA0IDE1Ljc1MjlMMTguNzQwMiAyMS41ODY5TDE2LjgzNzkgMTkuMTYwMkMxNi41ODE1IDE4LjgzMSAxNi4xNjkxIDE4LjY2MzQgMTUuNzU1OSAxOC43MjA3QzE1LjM0MjYgMTguNzc4MSAxNC45OTA5IDE5LjA1MTkgMTQuODM0IDE5LjQzODVDMTQuNjc3MyAxOS44MjQ5IDE0LjczOSAyMC4yNjU2IDE0Ljk5NTEgMjAuNTk0N0wxNy44NDE4IDI0LjIyMzZDMTguMDY0NCAyNC41MDUyIDE4LjQwNDcgMjQuNjY4OSAxOC43NjM3IDI0LjY2N0MxOS4xMjQ1IDI0LjY2NiAxOS40NjQ0IDI0LjQ5NzcgMTkuNjg0NiAyNC4yMTE5TDI1LjAxNjYgMTcuMjExOVYxNy4xNzY4QzI1LjI3MDkgMTYuODQzMyAyNS4zMjc3IDE2LjM5OTYgMjUuMTY2IDE2LjAxMjdDMjUuMDA0NCAxNS42MjU5IDI0LjY0OTEgMTUuMzU0NCAyNC4yMzM0IDE1LjMwMDhaIiBmaWxsPSIjMDBBMTVEIi8+Cjwvc3ZnPgo=');
+            background-size: 40px 40px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .checkbox-label {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.333;
+            color: #212B36;
+            cursor: pointer;
+        }
+
+        .description {
+            color: #637381;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Checkbox 樣式測試</h1>
+        <p class="description">
+            測試新的 checkbox 樣式：40x40px SVG 圖示，hover 時有灰色圓形背景，勾選時顯示綠色勾選圖示。
+        </p>
+
+        <div class="form-group">
+            <label class="form-label">批改方向（可多選）</label>
+            <div class="checkbox-group">
+                <label class="checkbox-item">
+                    <input type="checkbox" name="correctionFocus" value="coherence" class="checkbox-input">
+                    <span class="checkbox-label">注意段落銜接與首尾連貫性</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="correctionFocus" value="rhetoric" class="checkbox-input">
+                    <span class="checkbox-label">注重修辭技巧的使用</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="correctionFocus" value="punctuation" class="checkbox-input">
+                    <span class="checkbox-label">注重標點符號的使用時機</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

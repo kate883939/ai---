@@ -444,38 +444,35 @@ body {
     background: rgba(0, 161, 93, 0.08);
 }
 
+
+/* Upload Area - 根據 Figma 設計稿重新設計 */
 .upload-area {
     border: 1px dashed rgba(145, 158, 171, 0.32);
     border-radius: 8px;
     background: #F9FAFB;
     padding: 40px 0;
-    text-align: center;
-    cursor: default;
-    transition: var(--transition-normal);
+    width: 100%;
+}
+
+/* 文字上傳模式下的 upload area 樣式 */
+.upload-area.text-mode {
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+.upload-container {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 40px;
-    position: relative;
-    width: 100%;
-    margin: 0;
-    padding: 40px 140px;
-}
-
-.upload-area:hover {
-    border-color: rgba(145, 158, 171, 0.6);
-    background: rgba(145, 158, 171, 0.04);
+    padding: 0 140px;
 }
 
 .upload-illustration {
     width: 213px;
     height: 160px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
+    flex-shrink: 0;
 }
 
 .upload-image {
@@ -484,50 +481,165 @@ body {
     object-fit: contain;
 }
 
-.upload-content {
+.upload-instructions {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
     gap: 24px;
-    width: 611px;
-    max-width: 100%;
-}
-
-.upload-text {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0;
-    position: relative;
-    z-index: 1;
-    line-height: 1.5;
-    text-align: left;
+    flex: 1;
+    max-width: 611px;
 }
 
 .upload-text-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    align-self: stretch;
-    text-align: left;
 }
 
-.upload-hint {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 1.333;
+.upload-title {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #212B36;
     margin: 0;
-    position: relative;
-    z-index: 1;
-    text-align: left;
 }
 
-.upload-limit {
-    color: var(--warning-700);
+.upload-description {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.333;
+    color: #637381;
+    margin: 0;
 }
 
-.upload-format {
-    color: var(--text-secondary);
+.upload-button {
+    background-color: #E3CE00;
+    color: #212B36;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    height: 40px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: fit-content;
+}
+
+.upload-button:hover {
+    background-color: #d4c000;
+}
+
+.upload-button:active {
+    background-color: #c4b000;
+}
+
+/* 響應式設計 */
+@media (max-width: 1200px) {
+    .upload-container {
+        padding: 0 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .upload-container {
+        flex-direction: column;
+        padding: 0 24px;
+        gap: 24px;
+    }
+    
+    .upload-illustration {
+        width: 160px;
+        height: 120px;
+    }
+    
+    .upload-title {
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .upload-description {
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    .upload-button {
+        align-self: center;
+        font-size: 16px;
+        padding: 6px 12px;
+        height: 36px;
+    }
+}
+
+/* 文字上傳區域樣式 */
+.text-upload-container {
+    width: 100%;
+    padding: 0;
+}
+
+.text-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.essay-textarea {
+    width: 100%;
+    height: 240px;
+    padding: 16px;
+    border: 2px solid rgba(145, 158, 171, 0.32);
+    border-radius: 6px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.333;
+    color: #212B36;
+    background: #FFFFFF;
+    resize: vertical;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.essay-textarea::placeholder {
+    color: #919EAB;
+}
+
+.essay-textarea:focus {
+    outline: none;
+    border-color: #00A15D;
+    box-shadow: 0px 0px 0px 3px rgba(0, 161, 93, 0.1);
+}
+
+.text-input-wrapper.focused .essay-textarea {
+    border-color: #00A15D;
+}
+
+.text-counter {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.333;
+    color: #637381;
+    text-align: right;
+    margin: 0;
+}
+
+/* 文字上傳區域響應式設計 */
+@media (max-width: 768px) {
+    .essay-textarea {
+        height: 200px;
+        font-size: 16px;
+        padding: 12px;
+    }
+    
+    .text-counter {
+        font-size: 16px;
+    }
 }
 
 /* 選擇檔案按鈕 */
@@ -575,15 +687,128 @@ body {
     box-shadow: 0 0 0 3px var(--secondary-transparent-24);
 }
 
+/* 檔案列表區域 */
+.file-list-container {
+    margin-top: 24px;
+}
+
+.file-list-header {
+    margin-bottom: 16px;
+}
+
+.page-number {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.333;
+}
+
+.file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 檔案保持垂直排列，符合設計稿 */
+.file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 20px 8px 8px;
+    background: var(--background-default);
+    border: 1px solid rgba(145, 158, 171, 0.32);
+    border-radius: 8px;
+    width: 100%;
+}
+
+.file-preview {
+    width: 132px;
+    height: 99px;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.file-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.file-preview.pdf {
+    background: #F4F6F8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #637381;
+    font-size: 24px;
+}
+
+.file-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.file-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.333;
+}
+
+.file-size {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.333;
+}
+
+.delete-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 72, 66, 0.08);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    height: 40px;
+    color: #B72136;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.delete-button:hover {
+    background: rgba(255, 72, 66, 0.16);
+}
+
+.delete-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* 表單區域 */
 .form-section {
     background: var(--background-default);
     border-radius: 22px;
     box-shadow: 0px 16px 32px -4px var(--shadow-light);
-    overflow: hidden;
     margin-bottom: 24px;
     position: relative;
     border: 2px solid rgba(0, 208, 201, 1);
+    min-height: fit-content;
+    height: auto;
 }
 
 .form-content {
@@ -591,12 +816,16 @@ body {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    min-height: fit-content;
+    height: auto;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    height: auto;
+    min-height: fit-content;
 }
 
 .form-label {
@@ -637,6 +866,8 @@ body {
     color: var(--text-primary);
     background: var(--background-default);
     transition: var(--transition-normal);
+    height: 56px;
+    box-sizing: border-box;
 }
 
 .text-input:focus {
@@ -648,11 +879,23 @@ body {
     color: #919EAB;
 }
 
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .accordion {
-    border: 1px solid rgba(145, 158, 171, 0.32);
+    border: none;
     border-radius: 6px;
-    overflow: hidden;
     background: rgba(0, 161, 93, 0.08);
+    cursor: pointer;
+    transition: all 225ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion.active {
+    border-radius: 6px 6px 0px 0px;
+    background: rgba(0, 161, 93, 0.12);
 }
 
 .accordion-header {
@@ -661,18 +904,31 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
-    transition: var(--transition-normal);
-}
-
-.accordion-header:hover {
-    background: rgba(0, 161, 93, 0.12);
+    transition: all 225ms cubic-bezier(0.4, 0, 0.2, 1);
+    height: 56px;
+    box-sizing: border-box;
 }
 
 .accordion-title {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.333;
+    color: #212B36;
+}
+
+.accordion-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.accordion-status-text {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 500;
     font-size: 16px;
-    font-weight: var(--font-weight-medium);
-    color: var(--text-primary);
+    line-height: 1.375;
+    color: #212B36;
 }
 
 .accordion-icon {
@@ -681,22 +937,158 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-primary);
-    transition: var(--transition-normal);
-}
-
-.accordion-content {
-    padding: 16px;
-    background: var(--background-default);
-    display: none;
-}
-
-.accordion.active .accordion-content {
-    display: block;
+    color: #212B36;
+    transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .accordion.active .accordion-icon {
     transform: rotate(180deg);
+}
+
+.accordion-content {
+    background: rgba(145, 158, 171, 0.08);
+    border: none;
+    border-radius: 0px 0px 6px 6px;
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+    transition: height 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    height: 0;
+}
+
+.accordion-content-inner {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    height: auto;
+    min-height: fit-content;
+}
+
+.accordion-content-inner .form-group {
+    margin: 0;
+    height: auto;
+    min-height: fit-content;
+}
+
+.accordion-content-inner .form-group:first-child {
+    padding: 0 16px;
+}
+
+.accordion-content-inner .form-group:not(:first-child) {
+    padding: 0 16px;
+}
+
+/* 確保 accordion 內容正確顯示 */
+.accordion-container {
+    position: relative;
+    z-index: 10;
+    height: auto;
+    min-height: fit-content;
+}
+
+.accordion-content-inner .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    padding: 8px 0;
+}
+
+.radio-input {
+    width: 41px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    transition: all 0.2s ease;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDEiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MSA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMC45NzE3IDIwQzEwLjk3MTcgMjUuNTIyOCAxNS40NDg4IDMwIDIwLjk3MTcgMzBDMjYuNDk0NSAzMCAzMC45NzE3IDI1LjUyMjggMzAuOTcxNyAyMEMzMC45NzE3IDE0LjQ3NzIgMjYuNDk0NSAxMCAyMC45NzE3IDEwQzE1LjQ0ODggMTAgMTAuOTcxNyAxNC40NzcyIDEwLjk3MTcgMjBaTTEyLjk3MTcgMjBDMTIuOTcxNyAxNS41ODE3IDE2LjU1MzQgMTIgMjAuOTcxNyAxMkMyNS4zOSAxMiAyOC45NzE3IDE1LjU4MTcgMjguOTcxNyAyMEMyOC45NzE3IDI0LjQxODMgMjUuMzkgMjggMjAuOTcxNyAyOEMxNi41NTM0IDI4IDEyLjk3MTcgMjQuNDE4MyAxMi45NzE3IDIwWiIgZmlsbD0iIzYzNzM4MSIvPgo8L3N2Zz4K');
+    background-size: 41px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 20px;
+}
+
+.radio-input:hover {
+    background-color: rgba(99, 115, 129, 0.08);
+}
+
+.radio-input:checked {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDEiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MSA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMC45NzE3IDEwQzE1LjQ0ODggMTAgMTAuOTcxNyAxNC40NzcyIDEwLjk3MTcgMjBDMTAuOTcxNyAyNS41MjI4IDE1LjQ0ODggMzAgMjAuOTcxNyAzMEMyNi40OTQ1IDMwIDMwLjk3MTcgMjUuNTIyOCAzMC45NzE3IDIwQzMwLjk3MTcgMTcuMzQ3OCAyOS45MTgxIDE0LjgwNDMgMjguMDQyNyAxMi45Mjg5QzI2LjE2NzQgMTEuMDUzNiAyMy42MjM4IDEwIDIwLjk3MTcgMTBaTTIwLjk3MTcgMjhDMTYuNTUzNCAyOCAxMi45NzE3IDI0LjQxODMgMTIuOTcxNyAyMEMxMi45NzE3IDE1LjU4MTcgMTYuNTUzNCAxMiAyMC45NzE3IDEyQzI1LjM5IDEyIDI4Ljk3MTcgMTUuNTgxNyAyOC45NzE3IDIwQzI4Ljk3MTcgMjIuMTIxNyAyOC4xMjg4IDI0LjE1NjYgMjYuNjI4NSAyNS42NTY5QzI1LjEyODIgMjcuMTU3MSAyMy4wOTM0IDI4IDIwLjk3MTcgMjhaTTE1Ljk3MTcgMjBDMTUuOTcxNyAxNy4yMzg2IDE4LjIxMDMgMTUgMjAuOTcxNyAxNUMyMy43MzMxIDE1IDI1Ljk3MTcgMTcuMjM4NiAyNS45NzE3IDIwQzI1Ljk3MTcgMjIuNzYxNCAyMy43MzMxIDI1IDIwLjk3MTcgMjVDMTguMjEwMyAyNSAxNS45NzE3IDIyLjc2MTQgMTUuOTcxNyAyMFoiIGZpbGw9IiMwMEExNUQiLz4KPC9zdmc+Cg==');
+    background-size: 41px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.radio-label {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.333;
+    color: #212B36;
+    cursor: default;
+    user-select: none;
+}
+
+.accordion-content-inner .checkbox-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+}
+
+/* Checkbox 樣式 */
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    padding: 8px 0;
+}
+
+.checkbox-input {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    transition: all 0.2s ease;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI3IDkuNUMyOC45MzMgOS41IDMwLjUgMTEuMDY3IDMwLjUgMTNWMjdDMzAuNSAyOC45MzMgMjguOTMzIDMwLjUgMjcgMzAuNUgxM0MxMS4wNjcgMzAuNSA5LjUgMjguOTMzIDkuNSAyN1YxM0M5LjUgMTEuMDY3IDExLjA2NyA5LjUgMTMgOS41SDI3Wk0xMyAxMS44MzNDMTIuMzU1NyAxMS44MzMgMTEuODMzIDEyLjM1NTcgMTEuODMzIDEzVjI3QzExLjgzMyAyNy42NDQzIDEyLjM1NTcgMjguMTY3IDEzIDI4LjE2N0gyN0MyNy42NDQzIDI4LjE2NyAyOC4xNjcgMjcuNjQ0MyAyOC4xNjcgMjdWMTNDMjguMTY3IDEyLjM1NTcgMjcuNjQ0MyAxMS44MzMgMjcgMTEuODMzSDEzWiIgZmlsbD0iIzYzNzM4MSIvPgo8L3N2Zz4K');
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 20px;
+}
+
+.checkbox-input:hover {
+    background-color: rgba(99, 115, 129, 0.08);
+}
+
+.checkbox-input:checked {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI3IDkuNUMyOC45MzMgOS41IDMwLjUgMTEuMDY3IDMwLjUgMTNWMjdDMzAuNSAyOC45MzMgMjguOTMzIDMwLjUgMjcgMzAuNUgxM0MxMS4wNjcgMzAuNSA5LjUgMjguOTMzIDkuNSAyN1YxM0M5LjUgMTEuMDY3IDExLjA2NyA5LjUgMTMgOS41SDI3Wk0yNC4yMzM0IDE1LjMwMDhDMjMuODE3NyAxNS4yNDczIDIzLjQwNDcgMTUuNDE5OCAyMy4xNTA0IDE1Ljc1MjlMMTguNzQwMiAyMS41ODY5TDE2LjgzNzkgMTkuMTYwMkMxNi41ODE1IDE4LjgzMSAxNi4xNjkxIDE4LjY2MzQgMTUuNzU1OSAxOC43MjA3QzE1LjM0MjYgMTguNzc4MSAxNC45OTA5IDE5LjA1MTkgMTQuODM0IDE5LjQzODVDMTQuNjc3MyAxOS44MjQ5IDE0LjczOSAyMC4yNjU2IDE0Ljk5NTEgMjAuNTk0N0wxNy44NDE4IDI0LjIyMzZDMTguMDY0NCAyNC41MDUyIDE4LjQwNDcgMjQuNjY4OSAxOC43NjM3IDI0LjY2N0MxOS4xMjQ1IDI0LjY2NiAxOS40NjQ0IDI0LjQ5NzcgMTkuNjg0NiAyNC4yMTE5TDI1LjAxNjYgMTcuMjExOVYxNy4xNzY4QzI1LjI3MDkgMTYuODQzMyAyNS4zMjc3IDE2LjM5OTYgMjUuMTY2IDE2LjAxMjdDMjUuMDA0NCAxNS42MjU5IDI0LjY0OTEgMTUuMzU0NCAyNC4yMzM0IDE1LjMwMDhaIiBmaWxsPSIjMDBBMTVEIi8+Cjwvc3ZnPgo=');
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.checkbox-label {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.333;
+    color: #212B36;
+    cursor: default;
+    user-select: none;
 }
 
 /* 主要按鈕 */
@@ -712,7 +1104,7 @@ body {
     font-weight: var(--font-weight-bold);
     cursor: pointer;
     transition: var(--transition-normal);
-    margin-top: 24px;
+    margin-top: 0px;
     height: 48px;
     display: flex;
     align-items: center;
@@ -745,7 +1137,7 @@ body {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .header-content,
     .content {
         padding-left: var(--spacing-md);
@@ -816,30 +1208,7 @@ body {
         flex-direction: column;
     }
 
-    /* 上傳區域響應式設計 */
-    .upload-area {
-        flex-direction: column;
-        padding: 24px 16px;
-        gap: 16px;
-    }
-    
-    .upload-content {
-        width: 100%;
-        gap: 16px;
-    }
-    
-    .upload-illustration {
-        width: 120px;
-        height: 90px;
-    }
-    
-    .upload-text {
-        font-size: 18px;
-    }
-    
-    .upload-hint {
-        font-size: 16px;
-    }
+
     
     .select-file-button {
         font-size: 16px;

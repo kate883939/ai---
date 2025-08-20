@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI EssayGo - Design System Showcase</title>
+    <link rel="stylesheet" href="styles/ai-essay-go.css">
+    <style>
+        .showcase-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        
+        .showcase-section {
+            margin-bottom: 60px;
+            padding: 32px;
+            background: #FFFFFF;
+            border-radius: 16px;
+            box-shadow: 0px 4px 20px rgba(145, 158, 171, 0.12);
+        }
+        
+        .showcase-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #212B36;
+            margin-bottom: 8px;
+        }
+        
+        .showcase-subtitle {
+            font-size: 16px;
+            color: #637381;
+            margin-bottom: 32px;
+        }
+        
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .component-item {
+            padding: 24px;
+            border: 1px solid rgba(145, 158, 171, 0.24);
+            border-radius: 12px;
+            background: #FAFBFC;
+        }
+        
+        .component-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #212B36;
+            margin-bottom: 16px;
+        }
+        
+        .component-demo {
+            margin-bottom: 16px;
+        }
+        
+        .component-code {
+            background: #F4F6F8;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            color: #212B36;
+            overflow-x: auto;
+        }
+        
+        .color-section {
+            margin-bottom: 40px;
+        }
+        
+        .color-section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #212B36;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #EAF9E8;
+        }
+        
+        .color-subtitle {
+            font-size: 16px;
+            font-weight: 500;
+            color: #637381;
+            margin-bottom: 16px;
+            margin-top: 24px;
+        }
+        
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .color-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            border-radius: 8px;
+            background: #FFFFFF;
+            border: 1px solid rgba(145, 158, 171, 0.24);
+            transition: all 0.2s ease;
+        }
+        
+        .color-item:hover {
+            box-shadow: 0 4px 12px rgba(145, 158, 171, 0.16);
+            transform: translateY(-2px);
+        }
+        
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            border: 1px solid rgba(145, 158, 171, 0.24);
+        }
+        
+        .color-info {
+            flex: 1;
+        }
+        
+        .color-name {
+            font-weight: 600;
+            color: #212B36;
+            margin-bottom: 4px;
+        }
+        
+        .color-value {
+            font-size: 14px;
+            color: #637381;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+        
+        .typography-example {
+            margin-bottom: 16px;
+        }
+        
+        .typography-label {
+            font-size: 14px;
+            color: #637381;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="showcase-container">
+        <div class="showcase-section">
+            <h1 class="showcase-title">AI EssayGo Design System</h1>
+            <p class="showcase-subtitle">完整的設計系統展示，包含所有組件、顏色和字體規範</p>
+        </div>
+
+        <!-- 顏色系統 -->
+        <div class="showcase-section">
+            <h2 class="showcase-title">顏色系統</h2>
+            <p class="showcase-subtitle">完整的顏色系統定義，包含品牌色、語義色和透明度色</p>
+            
+            <!-- Primary 顏色 -->
+            <div class="color-section">
+                <h3 class="color-section-title">Primary 品牌色</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #EAF9E8;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Primary 50</div>
+                            <div class="color-value">#EAF9E8</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #C1EDDC;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Primary 100</div>
+                            <div class="color-value">#C1EDDC</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #00A15D;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Primary 500</div>
+                            <div class="color-value">#00A15D</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #007141;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Primary 700</div>
+                            <div class="color-value">#007141</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="color-subtitle">Transparent</div>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(0, 161, 93, 0.08);"></div>
+                        <div class="color-info">
+                            <div class="color-name">8%</div>
+                            <div class="color-value">rgba(0, 161, 93, 0.08)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(0, 161, 93, 0.12);"></div>
+                        <div class="color-info">
+                            <div class="color-name">12%</div>
+                            <div class="color-value">rgba(0, 161, 93, 0.12)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(0, 161, 93, 0.16);"></div>
+                        <div class="color-info">
+                            <div class="color-name">16%</div>
+                            <div class="color-value">rgba(0, 161, 93, 0.16)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(0, 161, 93, 0.24);"></div>
+                        <div class="color-info">
+                            <div class="color-name">24%</div>
+                            <div class="color-value">rgba(0, 161, 93, 0.24)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(0, 161, 93, 0.32);"></div>
+                        <div class="color-info">
+                            <div class="color-name">32%</div>
+                            <div class="color-value">rgba(0, 161, 93, 0.32)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(0, 161, 93, 0.48);"></div>
+                        <div class="color-info">
+                            <div class="color-name">48%</div>
+                            <div class="color-value">rgba(0, 161, 93, 0.48)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary 顏色 -->
+            <div class="color-section">
+                <h3 class="color-section-title">Secondary 品牌色</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #FDFACA;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Secondary 50</div>
+                            <div class="color-value">#FDFACA</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #F6EB62;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Secondary 100</div>
+                            <div class="color-value">#F6EB62</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #E3CE00;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Secondary 500</div>
+                            <div class="color-value">#E3CE00</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #C3AF00;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Secondary 700</div>
+                            <div class="color-value">#C3AF00</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #837300;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Secondary 900</div>
+                            <div class="color-value">#837300</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info 顏色 -->
+            <div class="color-section">
+                <h3 class="color-section-title">Info 顏色</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #D0F2FF;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Info 50</div>
+                            <div class="color-value">#D0F2FF</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #74CAFF;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Info 100</div>
+                            <div class="color-value">#74CAFF</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #1890FF;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Info 500</div>
+                            <div class="color-value">#1890FF</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #0C53B7;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Info 700</div>
+                            <div class="color-value">#0C53B7</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #04297A;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Info 900</div>
+                            <div class="color-value">#04297A</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Neutral 顏色 -->
+            <div class="color-section">
+                <h3 class="color-section-title">Neutral 中性色</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #F9FAFB;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Neutral 50</div>
+                            <div class="color-value">#F9FAFB</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #F4F6F8;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Neutral 100</div>
+                            <div class="color-value">#F4F6F8</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #DFE3E8;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Neutral 200</div>
+                            <div class="color-value">#DFE3E8</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #C4CDD5;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Neutral 300</div>
+                            <div class="color-value">#C4CDD5</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #919EAB;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Neutral 400</div>
+                            <div class="color-value">#919EAB</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #637381;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Neutral 500</div>
+                            <div class="color-value">#637381</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #454F5B;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Neutral 600</div>
+                            <div class="color-value">#454F5B</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #212B36;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Neutral 700</div>
+                            <div class="color-value">#212B36</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #161C24;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Neutral 800</div>
+                            <div class="color-value">#161C24</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #000000;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Neutral 900</div>
+                            <div class="color-value">#000000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success 顏色 -->
+            <div class="color-section">
+                <h3 class="color-section-title">Success 成功色</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #E9FCD4;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Success 50</div>
+                            <div class="color-value">#E9FCD4</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #AAF27F;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Success 100</div>
+                            <div class="color-value">#AAF27F</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #54D62C;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Success 500</div>
+                            <div class="color-value">#54D62C</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #229A16;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Success 700</div>
+                            <div class="color-value">#229A16</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #08660D;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Success 900</div>
+                            <div class="color-value">#08660D</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Warning 顏色 -->
+            <div class="color-section">
+                <h3 class="color-section-title">Warning 警告色</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #FFF6D8;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Warning 50</div>
+                            <div class="color-value">#FFF6D8</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #FFDC8A;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Warning 100</div>
+                            <div class="color-value">#FFDC8A</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #FFB73D;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Warning 500</div>
+                            <div class="color-value">#FFB73D</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #B7731E;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Warning 700</div>
+                            <div class="color-value">#B7731E</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #7A400B;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Warning 900</div>
+                            <div class="color-value">#7A400B</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error 顏色 -->
+            <div class="color-section">
+                <h3 class="color-section-title">Error 錯誤色</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #FFE7D9;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Error 50</div>
+                            <div class="color-value">#FFE7D9</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #FFA48D;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Error 100</div>
+                            <div class="color-value">#FFA48D</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #FF4842;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Error 500</div>
+                            <div class="color-value">#FF4842</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #B72136;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Error 700</div>
+                            <div class="color-value">#B72136</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #7A0C2E;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Error 900</div>
+                            <div class="color-value">#7A0C2E</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Transparent 顏色 -->
+            <div class="color-section">
+                <h3 class="color-section-title">Secondary Transparent</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(227, 206, 0, 0.08);"></div>
+                        <div class="color-info">
+                            <div class="color-name">8%</div>
+                            <div class="color-value">rgba(227, 206, 0, 0.08)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(227, 206, 0, 0.12);"></div>
+                        <div class="color-info">
+                            <div class="color-name">12%</div>
+                            <div class="color-value">rgba(227, 206, 0, 0.12)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(227, 206, 0, 0.16);"></div>
+                        <div class="color-info">
+                            <div class="color-name">16%</div>
+                            <div class="color-value">rgba(227, 206, 0, 0.16)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(227, 206, 0, 0.24);"></div>
+                        <div class="color-info">
+                            <div class="color-name">24%</div>
+                            <div class="color-value">rgba(227, 206, 0, 0.24)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(227, 206, 0, 0.32);"></div>
+                        <div class="color-info">
+                            <div class="color-name">32%</div>
+                            <div class="color-value">rgba(227, 206, 0, 0.32)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(227, 206, 0, 0.48);"></div>
+                        <div class="color-info">
+                            <div class="color-name">48%</div>
+                            <div class="color-value">rgba(227, 206, 0, 0.48)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Transparent 顏色 -->
+            <div class="color-section">
+                <h3 class="color-section-title">Info Transparent</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(24, 144, 255, 0.08);"></div>
+                        <div class="color-info">
+                            <div class="color-name">8%</div>
+                            <div class="color-value">rgba(24, 144, 255, 0.08)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(24, 144, 255, 0.12);"></div>
+                        <div class="color-info">
+                            <div class="color-name">12%</div>
+                            <div class="color-value">rgba(24, 144, 255, 0.12)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(24, 144, 255, 0.16);"></div>
+                        <div class="color-info">
+                            <div class="color-name">16%</div>
+                            <div class="color-value">rgba(24, 144, 255, 0.16)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(24, 144, 255, 0.24);"></div>
+                        <div class="color-info">
+                            <div class="color-name">24%</div>
+                            <div class="color-value">rgba(24, 144, 255, 0.24)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(24, 144, 255, 0.32);"></div>
+                        <div class="color-info">
+                            <div class="color-name">32%</div>
+                            <div class="color-value">rgba(24, 144, 255, 0.32)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(24, 144, 255, 0.48);"></div>
+                        <div class="color-info">
+                            <div class="color-name">48%</div>
+                            <div class="color-value">rgba(24, 144, 255, 0.48)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Transparent 顏色 -->
+            <div class="color-section">
+                <h3 class="color-section-title">Success Transparent</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(84, 214, 44, 0.08);"></div>
+                        <div class="color-info">
+                            <div class="color-name">8%</div>
+                            <div class="color-value">rgba(84, 214, 44, 0.08)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(84, 214, 44, 0.12);"></div>
+                        <div class="color-info">
+                            <div class="color-name">12%</div>
+                            <div class="color-value">rgba(84, 214, 44, 0.12)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(84, 214, 44, 0.16);"></div>
+                        <div class="color-info">
+                            <div class="color-name">16%</div>
+                            <div class="color-value">rgba(84, 214, 44, 0.16)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(84, 214, 44, 0.24);"></div>
+                        <div class="color-info">
+                            <div class="color-name">24%</div>
+                            <div class="color-value">rgba(84, 214, 44, 0.24)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(84, 214, 44, 0.32);"></div>
+                        <div class="color-info">
+                            <div class="color-name">32%</div>
+                            <div class="color-value">rgba(84, 214, 44, 0.32)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(84, 214, 44, 0.48);"></div>
+                        <div class="color-info">
+                            <div class="color-name">48%</div>
+                            <div class="color-value">rgba(84, 214, 44, 0.48)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Warning Transparent 顏色 -->
+            <div class="color-section">
+                <h3 class="color-section-title">Warning Transparent</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(255, 183, 61, 0.08);"></div>
+                        <div class="color-info">
+                            <div class="color-name">8%</div>
+                            <div class="color-value">rgba(255, 183, 61, 0.08)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(255, 183, 61, 0.12);"></div>
+                        <div class="color-info">
+                            <div class="color-name">12%</div>
+                            <div class="color-value">rgba(255, 183, 61, 0.12)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(255, 183, 61, 0.16);"></div>
+                        <div class="color-info">
+                            <div class="color-name">16%</div>
+                            <div class="color-value">rgba(255, 183, 61, 0.16)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(255, 183, 61, 0.24);"></div>
+                        <div class="color-info">
+                            <div class="color-name">24%</div>
+                            <div class="color-value">rgba(255, 183, 61, 0.24)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(255, 183, 61, 0.32);"></div>
+                        <div class="color-info">
+                            <div class="color-name">32%</div>
+                            <div class="color-value">rgba(255, 183, 61, 0.32)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(255, 183, 61, 0.48);"></div>
+                        <div class="color-info">
+                            <div class="color-name">48%</div>
+                            <div class="color-value">rgba(255, 183, 61, 0.48)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Transparent 顏色 -->
+            <div class="color-section">
+                <h3 class="color-section-title">Error Transparent</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(255, 72, 66, 0.08);"></div>
+                        <div class="color-info">
+                            <div class="color-name">8%</div>
+                            <div class="color-value">rgba(255, 72, 66, 0.08)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(255, 72, 66, 0.12);"></div>
+                        <div class="color-info">
+                            <div class="color-name">12%</div>
+                            <div class="color-value">rgba(255, 72, 66, 0.12)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(255, 72, 66, 0.16);"></div>
+                        <div class="color-info">
+                            <div class="color-name">16%</div>
+                            <div class="color-value">rgba(255, 72, 66, 0.16)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(255, 72, 66, 0.24);"></div>
+                        <div class="color-info">
+                            <div class="color-name">24%</div>
+                            <div class="color-value">rgba(255, 72, 66, 0.24)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(255, 72, 66, 0.32);"></div>
+                        <div class="color-info">
+                            <div class="color-name">32%</div>
+                            <div class="color-value">rgba(255, 72, 66, 0.32)</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: rgba(255, 72, 66, 0.48);"></div>
+                        <div class="color-info">
+                            <div class="color-name">48%</div>
+                            <div class="color-value">rgba(255, 72, 66, 0.48)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 文字顏色 -->
+            <div class="color-section">
+                <h3 class="color-section-title">文字顏色</h3>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #212B36;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Text Primary</div>
+                            <div class="color-value">#212B36</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #637381;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Text Secondary</div>
+                            <div class="color-value">#637381</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #919EAB;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Text Disabled</div>
+                            <div class="color-value">#919EAB</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #FFFFFF; border: 1px solid #DFE3E8;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Text Inverse</div>
+                            <div class="color-value">#FFFFFF</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 字體系統 -->
+        <div class="showcase-section">
+            <h2 class="showcase-title">字體系統</h2>
+            <p class="showcase-subtitle">字體大小、字重和行高規範</p>
+            
+            <div class="component-grid">
+                <div class="component-item">
+                    <div class="component-name">標題文字</div>
+                    <div class="component-demo">
+                        <div style="font-size: 32px; font-weight: 700; color: #212B36; line-height: 1.25;">標題文字 H1</div>
+                        <div style="font-size: 24px; font-weight: 700; color: #212B36; line-height: 1.33;">標題文字 H2</div>
+                        <div style="font-size: 20px; font-weight: 700; color: #212B36; line-height: 1.5;">標題文字 H3</div>
+                    </div>
+                </div>
+                
+                <div class="component-item">
+                    <div class="component-name">內文文字</div>
+                    <div class="component-demo">
+                        <div style="font-size: 18px; font-weight: 500; color: #212B36; line-height: 1.33;">內文文字 Regular</div>
+                        <div style="font-size: 16px; font-weight: 400; color: #637381; line-height: 1.5;">內文文字 Small</div>
+                        <div style="font-size: 14px; font-weight: 400; color: #919EAB; line-height: 1.43;">說明文字 Caption</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 按鈕組件 -->
+        <div class="showcase-section">
+            <h2 class="showcase-title">按鈕組件</h2>
+            <p class="showcase-subtitle">不同變體和狀態的按鈕展示</p>
+            
+            <div class="component-grid">
+                <div class="component-item">
+                    <div class="component-name">Primary 按鈕</div>
+                    <div class="component-demo">
+                        <button class="select-file-button" style="background: var(--primary-500); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 18px; cursor: pointer; margin-right: 12px;">開始批改</button>
+                        <button class="select-file-button" style="background: var(--primary-500); color: white; border: none; padding: 12px 20px; border-radius: 6px; font-weight: 700; font-size: 20px; cursor: pointer; margin-right: 12px;">大按鈕</button>
+                        <button class="select-file-button" style="background: var(--neutral-300); color: var(--text-disabled); border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 18px; cursor: not-allowed;">禁用狀態</button>
+                    </div>
+                </div>
+                
+                <div class="component-item">
+                    <div class="component-name">Secondary 按鈕</div>
+                    <div class="component-demo">
+                        <button class="select-file-button" style="background: var(--secondary-500); color: var(--text-primary); border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 18px; cursor: pointer; margin-right: 12px;">選擇檔案</button>
+                        <button class="select-file-button" style="background: var(--secondary-500); color: var(--text-primary); border: none; padding: 12px 20px; border-radius: 6px; font-weight: 700; font-size: 20px; cursor: pointer; margin-right: 12px;">大按鈕</button>
+                        <button class="select-file-button" style="background: var(--neutral-300); color: var(--text-disabled); border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 18px; cursor: not-allowed;">禁用狀態</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 輸入框組件 -->
+        <div class="showcase-section">
+            <h2 class="showcase-title">輸入框組件</h2>
+            <p class="showcase-subtitle">不同狀態的輸入框展示</p>
+            
+            <div class="component-grid">
+                <div class="component-item">
+                    <div class="component-name">基本輸入框</div>
+                    <div class="component-demo">
+                        <input type="text" placeholder="請輸入文字" style="width: 100%; padding: 12px 16px; border: 1px solid rgba(145, 158, 171, 0.32); border-radius: 8px; font-size: 16px; color: #212B36; background: #FFFFFF;">
+                    </div>
+                </div>
+                
+                <div class="component-item">
+                    <div class="component-name">聚焦狀態</div>
+                    <div class="component-demo">
+                        <input type="text" placeholder="聚焦狀態" style="width: 100%; padding: 12px 16px; border: 2px solid #00A15D; border-radius: 8px; font-size: 16px; color: #212B36; background: #FFFFFF; outline: none;">
+                    </div>
+                </div>
+                
+                <div class="component-item">
+                    <div class="component-name">錯誤狀態</div>
+                    <div class="component-demo">
+                        <input type="text" placeholder="錯誤狀態" style="width: 100%; padding: 12px 16px; border: 1px solid #FF4842; border-radius: 8px; font-size: 16px; color: #212B36; background: #FFFFFF;">
+                    </div>
+                </div>
+                
+                <div class="component-item">
+                    <div class="component-name">禁用狀態</div>
+                    <div class="component-demo">
+                        <input type="text" placeholder="禁用狀態" disabled style="width: 100%; padding: 12px 16px; border: 1px solid rgba(145, 158, 171, 0.24); border-radius: 8px; font-size: 16px; color: #919EAB; background: #F4F6F8; cursor: not-allowed;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toggle 組件 -->
+        <div class="showcase-section">
+            <h2 class="showcase-title">Toggle 組件</h2>
+            <p class="showcase-subtitle">切換按鈕組件展示</p>
+            
+            <div class="component-grid">
+                <div class="component-item">
+                    <div class="component-name">檔案上傳 / 文字上傳</div>
+                    <div class="component-demo">
+                        <div style="display: flex; background: rgba(0, 161, 93, 0.12); border-radius: 12px; padding: 8px; width: fit-content;">
+                            <button style="background: #00A15D; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 18px; cursor: pointer; margin-right: 8px;">檔案上傳</button>
+                            <button style="background: transparent; color: #00A15D; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 18px; cursor: pointer;">文字上傳</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 用戶按鈕組件 -->
+        <div class="showcase-section">
+            <h2 class="showcase-title">用戶按鈕組件</h2>
+            <p class="showcase-subtitle">帳戶相關按鈕展示</p>
+            
+            <div class="component-grid">
+                <div class="component-item">
+                    <div class="component-name">基本用戶按鈕</div>
+                    <div class="component-demo">
+                        <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 6px; cursor: pointer;">
+                            <div style="width: 24px; height: 24px; background: #00A15D; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 700;">王</div>
+                            <span style="font-size: 18px; font-weight: 500; color: #212B36;">王老師</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-item">
+                    <div class="component-name">Hover 狀態</div>
+                    <div class="component-demo">
+                        <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 6px; cursor: pointer; background: rgba(0, 161, 93, 0.08);">
+                            <div style="width: 24px; height: 24px; background: #00A15D; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 700;">王</div>
+                            <span style="font-size: 18px; font-weight: 500; color: #212B36;">王老師</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 間距系統 -->
+        <div class="showcase-section">
+            <h2 class="showcase-title">間距系統</h2>
+            <p class="showcase-subtitle">標準間距規範</p>
+            
+            <div class="component-grid">
+                <div class="component-item">
+                    <div class="component-name">間距範例</div>
+                    <div class="component-demo">
+                        <div style="margin-bottom: 16px;">
+                            <div style="background: #00A15D; height: 8px; width: 8px; border-radius: 2px; margin-bottom: 8px;"></div>
+                            <span style="font-size: 14px; color: #637381;">8px (xs)</span>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="background: #00A15D; height: 16px; width: 16px; border-radius: 2px; margin-bottom: 8px;"></div>
+                            <span style="font-size: 14px; color: #637381;">16px (sm)</span>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="background: #00A15D; height: 24px; width: 24px; border-radius: 2px; margin-bottom: 8px;"></div>
+                            <span style="font-size: 14px; color: #637381;">24px (md)</span>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="background: #00A15D; height: 32px; width: 32px; border-radius: 2px; margin-bottom: 8px;"></div>
+                            <span style="font-size: 14px; color: #637381;">32px (lg)</span>
+                        </div>
+                        <div>
+                            <div style="background: #00A15D; height: 40px; width: 40px; border-radius: 2px; margin-bottom: 8px;"></div>
+                            <span style="font-size: 14px; color: #637381;">40px (xl)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 陰影系統 -->
+        <div class="showcase-section">
+            <h2 class="showcase-title">陰影系統</h2>
+            <p class="showcase-subtitle">不同層級的陰影效果</p>
+            
+            <div class="component-grid">
+                <div class="component-item">
+                    <div class="component-name">輕微陰影</div>
+                    <div class="component-demo">
+                        <div style="width: 100px; height: 100px; background: white; border-radius: 8px; box-shadow: 0px 2px 8px rgba(145, 158, 171, 0.12);"></div>
+                    </div>
+                </div>
+                
+                <div class="component-item">
+                    <div class="component-name">中等陰影</div>
+                    <div class="component-demo">
+                        <div style="width: 100px; height: 100px; background: white; border-radius: 8px; box-shadow: 0px 4px 20px rgba(145, 158, 171, 0.12);"></div>
+                    </div>
+                </div>
+                
+                <div class="component-item">
+                    <div class="component-name">重陰影</div>
+                    <div class="component-demo">
+                        <div style="width: 100px; height: 100px; background: white; border-radius: 8px; box-shadow: 0px 16px 32px -4px rgba(145, 158, 171, 0.16);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/ai-essay-go.js"></script>
+</body>
+</html>

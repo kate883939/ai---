@@ -1,0 +1,82 @@
+.ability-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.ability-content {
+    flex: 1;
+}
+
+.ability-score {
+    background: rgba(24, 144, 255, 0.08);
+    border-radius: 20px;
+    padding: 32px 20px;
+    text-align: center;
+    min-width: 136px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.ability-score-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1890FF;
+    line-height: 1.5;
+}
+
+.total-score {
+    font-size: 18px;
+    font-weight: 400;
+    color: #637381;
+    line-height: 1.33;
+}
+
+.evaluation-header {
+    font-size: 18px;
+    font-weight: 500;
+    color: #212B36;
+    margin-bottom: 8px;
+}
+
+.evaluation-detail {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.evaluation-detail:last-child {
+    margin-bottom: 0;
+}
+
+.detail-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #637381;
+    min-width: 40px;
+    flex-shrink: 0;
+}
+
+.evaluation-text {
+    font-size: 16px;
+    color: #212B36;
+    line-height: 1.375;
+    margin: 0;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .ability-item {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .ability-score {
+        align-self: flex-start;
+    }
+}

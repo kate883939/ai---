@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AbilityScore 元件測試</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: linear-gradient(180deg, #FFFBE6 0%, #E0F8F0 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #212B36;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .ability-item {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .ability-content {
+            flex: 1;
+        }
+
+        .ability-score {
+            background: rgba(24, 144, 255, 0.08);
+            border-radius: 20px;
+            padding: 32px 20px;
+            text-align: center;
+            min-width: 136px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .ability-score-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1890FF;
+            line-height: 1.5;
+        }
+
+        .total-score {
+            font-size: 18px;
+            font-weight: 400;
+            color: #637381;
+            line-height: 1.33;
+        }
+
+        .evaluation-header {
+            font-size: 18px;
+            font-weight: 500;
+            color: #212B36;
+            margin-bottom: 8px;
+        }
+
+        .evaluation-detail {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .evaluation-detail:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #637381;
+            min-width: 40px;
+            flex-shrink: 0;
+        }
+
+        .evaluation-text {
+            font-size: 16px;
+            color: #212B36;
+            line-height: 1.375;
+            margin: 0;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(145, 158, 171, 0.24);
+            margin: 16px 0;
+        }
+
+        .section-header {
+            background: #F4F6F8;
+            border-radius: 6px;
+            padding: 8px 16px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #637381;
+            margin: 0;
+        }
+
+        .evaluation-content {
+            padding: 0 16px;
+        }
+
+        @media (max-width: 768px) {
+            .ability-item {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .ability-score {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AbilityScore 元件測試</h1>
+        
+        <div class="section-header">
+            <h2 class="section-title">能力指標</h2>
+        </div>
+        <div class="evaluation-content">
+            <!-- 內容與結構 -->
+            <div class="ability-item">
+                <div class="ability-content">
+                    <div class="evaluation-header">內容與結構</div>
+                    <div class="evaluation-detail">
+                        <div class="detail-label">評語</div>
+                        <p class="evaluation-text">文章能夠圍繞老師的形象發展內容，選材貼近生活，舉例真實自然，能引發共鳴。對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                    </div>
+                    <div class="evaluation-detail">
+                        <div class="detail-label">建議</div>
+                        <p class="evaluation-text">對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                    </div>
+                </div>
+                <div class="ability-score">
+                    <div class="ability-score-text">90</div>
+                    <div class="total-score">/ 100 分</div>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <!-- 邏輯與修辭 -->
+            <div class="ability-item">
+                <div class="ability-content">
+                    <div class="evaluation-header">邏輯與修辭</div>
+                    <div class="evaluation-detail">
+                        <div class="detail-label">評語</div>
+                        <p class="evaluation-text">文章能夠圍繞老師的形象發展內容，選材貼近生活，舉例真實自然，能引發共鳴。對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                    </div>
+                    <div class="evaluation-detail">
+                        <div class="detail-label">建議</div>
+                        <p class="evaluation-text">對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                    </div>
+                </div>
+                <div class="ability-score">
+                    <div class="ability-score-text">88</div>
+                    <div class="total-score">/ 100 分</div>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <!-- 字詞與標點 -->
+            <div class="ability-item">
+                <div class="ability-content">
+                    <div class="evaluation-header">字詞與標點</div>
+                    <div class="evaluation-detail">
+                        <div class="detail-label">評語</div>
+                        <p class="evaluation-text">文章能夠圍繞老師的形象發展內容，選材貼近生活，舉例真實自然，能引發共鳴。對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                    </div>
+                    <div class="evaluation-detail">
+                        <div class="detail-label">建議</div>
+                        <p class="evaluation-text">對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                    </div>
+                </div>
+                <div class="ability-score">
+                    <div class="ability-score-text">80</div>
+                    <div class="total-score">/ 100 分</div>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <!-- 創意與個人表達 -->
+            <div class="ability-item">
+                <div class="ability-content">
+                    <div class="evaluation-header">創意與個人表達</div>
+                    <div class="evaluation-detail">
+                        <div class="detail-label">評語</div>
+                        <p class="evaluation-text">文章能夠圍繞老師的形象發展內容，選材貼近生活，舉例真實自然，能引發共鳴。對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                    </div>
+                    <div class="evaluation-detail">
+                        <div class="detail-label">建議</div>
+                        <p class="evaluation-text">對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                    </div>
+                </div>
+                <div class="ability-score">
+                    <div class="ability-score-text">80</div>
+                    <div class="total-score">/ 100 分</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

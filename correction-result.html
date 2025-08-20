@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI EssayGo - 批改結果</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/ai-essay-go.css">
+    <link rel="stylesheet" href="src/components/AbilityScore.css">
+    <style>
+        /* 批改結果頁面專用樣式 */
+        body {
+            background: linear-gradient(180deg, #FFFBE6 0%, #E0F8F0 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            width: 100%;
+            position: relative;
+        }
+
+        .content-container {
+            background: #FFFFFF;
+            border: 1px solid #F4F6F8;
+            border-radius: 40px;
+            margin: 16px 0 0 0;
+            padding: 32px 32px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .title-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .result-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #212B36;
+            margin: 0;
+        }
+
+        .result-time {
+            font-size: 16px;
+            color: #637381;
+            margin: 0;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #00A15D;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            height: 40px;
+        }
+
+        .btn-secondary {
+            background: #E3CE00;
+            color: #212B36;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            height: 40px;
+        }
+
+        .topic-section {
+            background: rgba(0, 161, 93, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .topic-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #212B36;
+            margin: 0;
+        }
+
+        .score-section {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .score-card {
+            flex: 1;
+            border-radius: 20px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .score-card.primary {
+            background: rgba(255, 183, 61, 0.08);
+            border: 3px solid rgba(255, 183, 61, 0.24);
+        }
+
+        .score-card.secondary {
+            background: rgba(24, 144, 255, 0.08);
+            border: 3px solid rgba(24, 144, 255, 0.24);
+        }
+
+        .score-label {
+            font-size: 18px;
+            font-weight: 700;
+            color: #637381;
+            text-align: center;
+        }
+
+        .score-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .score-icon {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 2.82px 5.65px rgba(0, 0, 0, 0.1);
+        }
+
+        .score-value {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        .score-number {
+            font-size: 56px;
+            font-weight: 700;
+            color: #212B36;
+            line-height: 1;
+        }
+
+        .score-unit {
+            font-size: 18px;
+            font-weight: 500;
+            color: #637381;
+            margin-bottom: 8px;
+        }
+
+        .evaluation-section {
+            background: white;
+            border: 1px solid #DFE3E8;
+            border-radius: 20px;
+            padding: 24px;
+        }
+
+        .section-header {
+            background: #F4F6F8;
+            border-radius: 6px;
+            padding: 8px 16px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #212B36;
+            margin: 0;
+        }
+
+        .evaluation-content {
+            padding: 0 16px;
+        }
+
+        .evaluation-item {
+            margin-bottom: 16px;
+        }
+
+        .evaluation-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .evaluation-header {
+            font-size: 18px;
+            font-weight: 500;
+            color: #212B36;
+            margin-bottom: 16px;
+        }
+
+        .evaluation-text {
+            font-size: 16px;
+            color: #212B36;
+            line-height: 1.375;
+            margin: 0;
+        }
+
+        .evaluation-detail {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .detail-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #637381;
+            min-width: 40px;
+            flex-shrink: 0;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(145, 158, 171, 0.24);
+            margin: 16px 0;
+        }
+
+        .ability-section {
+            margin-top: 20px;
+        }
+
+        .scoring-table {
+            margin-top: 20px;
+        }
+
+        .table-container {
+            border: 1px solid #DFE3E8;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            background: #F4F6F8;
+            display: flex;
+            border-bottom: 1px solid rgba(145, 158, 171, 0.24);
+        }
+
+        .table-cell {
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #637381;
+            text-align: center;
+            vertical-align: middle;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid rgba(145, 158, 171, 0.24);
+        }
+
+        .table-cell:last-child {
+            border-right: none;
+        }
+
+        .table-cell.grade {
+            width: 104px;
+        }
+
+        .table-cell.score {
+            width: 104px;
+        }
+
+        .table-cell.description {
+            flex: 1;
+            text-align: left;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .table-row {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid rgba(145, 158, 171, 0.24);
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-row .table-cell {
+            color: #212B36;
+            font-weight: 400;
+            vertical-align: middle;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .table-row .table-cell.description {
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .table-row .table-cell.grade {
+            font-weight: 500;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 120px;
+            right: 84px;
+            width: 56px;
+            height: 56px;
+            background: #E3CE00;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0px 12px 24px -4px rgba(145, 158, 171, 0.16);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scroll-to-top:hover {
+            background: #D4C000;
+        }
+
+        @media (max-width: 768px) {
+            .content-container {
+                margin: 16px 0 0 0;
+                padding: 20px;
+            }
+
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .score-section {
+                flex-direction: column;
+            }
+
+            .ability-item {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .ability-score {
+                align-self: flex-start;
+            }
+
+            .table-header,
+            .table-row {
+                flex-direction: column;
+            }
+
+            .table-cell {
+                border-right: none;
+                border-bottom: 1px solid rgba(145, 158, 171, 0.24);
+                width: 100% !important;
+            }
+
+            .table-cell:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 格線背景 -->
+    <div class="grid-background"></div>
+
+    <!-- 主容器 -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="Asset/Ai EssayGo Logo - L.svg" alt="AI EssayGo Logo" class="logo-image">
+                </div>
+                <div class="header-right">
+                    <div class="usage-info">
+                        <div class="usage-icon">
+                            <img src="Asset/coins_solid.svg" alt="Coins Icon" class="usage-icon-image">
+                        </div>
+                        <div class="usage-text">本學期剩餘 299 次</div>
+                    </div>
+                    <button class="account-button">
+                        <div class="account-avatar">
+                            <img src="Asset/IconButton.svg" alt="Account Avatar" class="account-avatar-image">
+                        </div>
+                        <div class="account-name">王老師</div>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- 結果內容 -->
+        <main class="content">
+            <div class="content-container">
+                <!-- 標題區域 -->
+                <div class="header-container">
+                    <div class="title-container">
+                        <h1 class="result-title">批改結果</h1>
+                        <p class="result-time">批改時間：2025/07/11 下午 5:03</p>
+                    </div>
+                    <div class="button-container">
+                        <button class="btn-primary" onclick="downloadResult()">下載批改結果</button>
+                        <button class="btn-secondary" onclick="window.location.href='ai-essay-go-homepage.html'">再改一篇</button>
+                    </div>
+                </div>
+
+                <!-- 題目區域 -->
+                <div class="topic-section">
+                    <p class="topic-text">題目｜季節的感恩</p>
+                </div>
+
+                <!-- 分數區域 -->
+                <div class="score-section">
+                    <div class="score-card primary">
+                        <div class="score-label">作文總分</div>
+                        <div class="score-content">
+                            <div class="score-icon">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                    <path d="M16 4L19.09 10.26L26 11.27L20.5 16.14L21.82 23.02L16 19.77L10.18 23.02L11.5 16.14L6 11.27L12.91 10.26L16 4Z" fill="#007141"/>
+                                </svg>
+                            </div>
+                            <div class="score-value">
+                                <div class="score-number">86</div>
+                                <div class="score-unit">/ 100 分</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="score-card secondary">
+                        <div class="score-label">作文等級</div>
+                        <div class="score-content">
+                            <div class="score-icon">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                    <path d="M16 4L19.09 10.26L26 11.27L20.5 16.14L21.82 23.02L16 19.77L10.18 23.02L11.5 16.14L6 11.27L12.91 10.26L16 4Z" fill="#007141"/>
+                                </svg>
+                            </div>
+                            <div class="score-value">
+                                <div class="score-number">甲</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 整體評語區域 -->
+                <div class="evaluation-section">
+                    <div class="section-header">
+                        <h2 class="section-title">整體評語</h2>
+                    </div>
+                    <div class="evaluation-content">
+                        <div class="evaluation-item">
+                            <div class="evaluation-header">亮點分析</div>
+                            <p class="evaluation-text">主旨明確，緊扣題目，情感真摯並能引起讀者共鳴。<br>本文立意清晰，情感真摯，能透過具體事例有效傳達主旨。</p>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="evaluation-item">
+                            <div class="evaluation-header">核心建議</div>
+                            <p class="evaluation-text">文章敘事略顯平淡，若能強化段落間的銜接與細節描寫，將更能引人入勝。<br>建議在闡述論點時，除了說理，可以再補上一個具體的「實例」或「個人經驗」來佐證。</p>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="evaluation-item">
+                            <div class="evaluation-header">亮點句型/修辭</div>
+                            <p class="evaluation-text">主旨明確，緊扣題目，情感真摯並能引起讀者共鳴。<br>本文立意清晰，情感真摯，能透過具體事例有效傳達主旨。</p>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="evaluation-item">
+                            <div class="evaluation-header">建議調整句型</div>
+                            <p class="evaluation-text">主旨明確，緊扣題目，情感真摯並能引起讀者共鳴。<br>本文立意清晰，情感真摯，能透過具體事例有效傳達主旨。</p>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="evaluation-item">
+                            <div class="evaluation-header">錯別字與標點符號</div>
+                            <p class="evaluation-text">主旨明確，緊扣題目，情感真摯並能引起讀者共鳴。<br>本文立意清晰，情感真摯，能透過具體事例有效傳達主旨。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 字數檢核區域 -->
+                <div class="evaluation-section" style="margin-top: 20px;">
+                    <div class="section-header">
+                        <h2 class="section-title">字數檢核</h2>
+                    </div>
+                    <div class="evaluation-content">
+                        <div class="evaluation-item">
+                            <div class="evaluation-header">約 550 字</div>
+                            <p class="evaluation-text">文章整體能聚焦主題，觀點清晰，主題明確，用詞優雅得宜。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 能力指標區域 -->
+                <div class="evaluation-section ability-section">
+                    <div class="section-header">
+                        <h2 class="section-title">能力指標</h2>
+                    </div>
+                    <div class="evaluation-content">
+                        <!-- 內容與結構 -->
+                        <div class="ability-item">
+                            <div class="ability-content">
+                                <div class="evaluation-header">內容與結構</div>
+                                <div class="evaluation-detail">
+                                    <div class="detail-label">評語</div>
+                                    <p class="evaluation-text">文章能夠圍繞老師的形象發展內容，選材貼近生活，舉例真實自然，能引發共鳴。對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                                </div>
+                                <div class="evaluation-detail">
+                                    <div class="detail-label">建議</div>
+                                    <p class="evaluation-text">對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                                </div>
+                            </div>
+                            <div class="ability-score">
+                                <div class="ability-score-text">90</div>
+                                <div class="total-score">/ 100 分</div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        
+                        <!-- 邏輯與修辭 -->
+                        <div class="ability-item">
+                            <div class="ability-content">
+                                <div class="evaluation-header">邏輯與修辭</div>
+                                <div class="evaluation-detail">
+                                    <div class="detail-label">評語</div>
+                                    <p class="evaluation-text">文章能夠圍繞老師的形象發展內容，選材貼近生活，舉例真實自然，能引發共鳴。對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                                </div>
+                                <div class="evaluation-detail">
+                                    <div class="detail-label">建議</div>
+                                    <p class="evaluation-text">對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                                </div>
+                            </div>
+                            <div class="ability-score">
+                                <div class="ability-score-text">88</div>
+                                <div class="total-score">/ 100 分</div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        
+                        <!-- 字詞與標點 -->
+                        <div class="ability-item">
+                            <div class="ability-content">
+                                <div class="evaluation-header">字詞與標點</div>
+                                <div class="evaluation-detail">
+                                    <div class="detail-label">評語</div>
+                                    <p class="evaluation-text">文章能夠圍繞老師的形象發展內容，選材貼近生活，舉例真實自然，能引發共鳴。對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                                </div>
+                                <div class="evaluation-detail">
+                                    <div class="detail-label">建議</div>
+                                    <p class="evaluation-text">對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                                </div>
+                            </div>
+                            <div class="ability-score">
+                                <div class="ability-score-text">80</div>
+                                <div class="total-score">/ 100 分</div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        
+                        <!-- 創意與個人表達 -->
+                        <div class="ability-item">
+                            <div class="ability-content">
+                                <div class="evaluation-header">創意與個人表達</div>
+                                <div class="evaluation-detail">
+                                    <div class="detail-label">評語</div>
+                                    <p class="evaluation-text">文章能夠圍繞老師的形象發展內容，選材貼近生活，舉例真實自然，能引發共鳴。對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                                </div>
+                                <div class="evaluation-detail">
+                                    <div class="detail-label">建議</div>
+                                    <p class="evaluation-text">對老師的描寫不流於表面，能看出作者細膩的觀察，內容有深度與層次。主題思想明確，感情真摯動人，具備啟發性與反思性。</p>
+                                </div>
+                            </div>
+                            <div class="ability-score">
+                                <div class="ability-score-text">80</div>
+                                <div class="total-score">/ 100 分</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 評分量表區域 -->
+                <div class="evaluation-section scoring-table">
+                    <div class="section-header">
+                        <h2 class="section-title">評分量表</h2>
+                    </div>
+                    <div class="table-container">
+                        <div class="table-header">
+                            <div class="table-cell grade">等第</div>
+                            <div class="table-cell score">分數</div>
+                            <div class="table-cell description">作答情形</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell grade">甲上上</div>
+                            <div class="table-cell score">95-100分</div>
+                            <div class="table-cell description">內容充實，主題明確，結構嚴謹，邏輯清晰，修辭運用得當，語句流暢，字跡工整，標點正確。錯別字/漏字少於3個，完全寫作。</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell grade">甲上</div>
+                            <div class="table-cell score">90-94分</div>
+                            <div class="table-cell description">內容完整，主題明確，結構完整，邏輯清楚，用詞恰當，語句通順，字跡工整，標點正確。錯別字/漏字3-5個，完全寫作。</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell grade">甲</div>
+                            <div class="table-cell score">85-89分</div>
+                            <div class="table-cell description">精熟，可內容大致完整，主題明確，結構尚可，邏輯基本清晰，用詞一般，語句尚通順，字跡可辨，標點大部分正確。錯別字/漏字6-8個，輕微字數不足。</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell grade">甲下</div>
+                            <div class="table-cell score">80-84分</div>
+                            <div class="table-cell description">內容有待加強，主題不明確，結構鬆散，邏輯不夠清晰，用詞不精準，語句不夠通順，字跡凌亂，標點錯誤較多。錯別字/漏字9-12個，明顯字數不足。</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell grade">待加強</div>
+                            <div class="table-cell score">79 分以下</div>
+                            <div class="table-cell description">內容空泛，嚴重離題，結構混亂，邏輯不清，用詞錯誤多，語句不通順，字跡潦草，標點錯誤嚴重。錯別字/漏字超過12個，嚴重字數不足。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            © NANI BOOK ENTERPRISE CO., LTD. All Rights Reserved.
+        </footer>
+
+        <!-- 回到頂部按鈕 -->
+        <button class="scroll-to-top" onclick="scrollToTop()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z" fill="#212B36"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        function downloadResult() {
+            // 模擬下載批改結果功能
+            alert('下載功能開發中...');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // 顯示/隱藏回到頂部按鈕
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (window.scrollY > 300) {
+                scrollButton.style.display = 'flex';
+            } else {
+                scrollButton.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
