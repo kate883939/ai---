@@ -201,3 +201,72 @@ import AbilityScore from './components/AbilityScore';
 #### 響應式設計
 - 桌面版：水平排列
 - 行動版：垂直排列，分數卡片靠左對齊
+
+## ConfirmDialog 組件
+
+基於Figma設計規範的確認對話框組件，用於顯示確認訊息和用戶選擇。
+
+### Props
+
+| 屬性 | 類型 | 預設值 | 描述 |
+|------|------|--------|------|
+| `isOpen` | `boolean` | - | 控制對話框顯示/隱藏 |
+| `title` | `string` | - | 對話框標題 |
+| `message` | `string` | - | 對話框內容訊息 |
+| `confirmText` | `string` | `'確認'` | 確認按鈕文字 |
+| `cancelText` | `string` | `'取消'` | 取消按鈕文字 |
+| `onConfirm` | `function` | - | 確認按鈕點擊事件 |
+| `onCancel` | `function` | - | 取消按鈕點擊事件 |
+| `onClose` | `function` | - | 關閉對話框事件 |
+
+### 使用範例
+
+```jsx
+import ConfirmDialog from './components/ConfirmDialog';
+
+const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+<ConfirmDialog
+  isOpen={isDialogOpen}
+  title="即將離開批改結果"
+  message="此頁內容將不會保存，離開前請先下載批改結果"
+  confirmText="再改一篇"
+  cancelText="停留此頁"
+  onConfirm={() => {
+    console.log('用戶確認離開');
+    setIsDialogOpen(false);
+    // 執行跳轉邏輯
+  }}
+  onCancel={() => {
+    console.log('用戶選擇停留');
+    setIsDialogOpen(false);
+  }}
+  onClose={() => setIsDialogOpen(false)}
+/>
+```
+
+### 設計規範
+
+#### 佈局
+- 固定定位，覆蓋整個螢幕
+- 對話框居中顯示，最大寬度 600px
+- 響應式設計，手機版最大寬度 90vw
+
+#### 顏色
+- 背景遮罩: rgba(0, 0, 0, 0.5)
+- 對話框背景: #FFFFFF
+- 標題文字: #212B36
+- 內容文字: #212B36
+- 確認按鈕: #00A15D
+- 取消按鈕: 透明背景，邊框 rgba(145, 158, 171, 0.32)
+
+#### 字體
+- 標題: 18px, 700 weight
+- 內容: 18px, 500 weight
+- 按鈕: 18px, 700 weight
+
+#### 互動功能
+- 點擊背景區域關閉對話框
+- 按 ESC 鍵關閉對話框
+- 點擊關閉按鈕關閉對話框
+- 開啟時禁止背景滾動

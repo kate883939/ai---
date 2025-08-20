@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI EssayGo - 作文批改中</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/ai-essay-go.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <style>
+        /* Loading 頁面專用樣式 */
+        body {
+            background: linear-gradient(180deg, #FFFBE6 0%, #E0F8F0 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .main-container {
+            width: 100%;
+            position: relative;
+        }
+
+        .content-container {
+            background: #FFFFFF;
+            border: 1px solid #F4F6F8;
+            border-radius: 40px;
+            margin: 16px 0 0 0;
+            padding: 32px 32px;
+        }
+
+        .loading-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        .loading-animation {
+            width: 320px;
+            height: 320px;
+            margin-bottom: 12px;
+        }
+
+        .progress-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-text span {
+            font-size: 18px;
+            font-weight: 700;
+            color: #212B36;
+            line-height: 1.56;
+        }
+
+        .loading-dots {
+            display: inline-block;
+            animation: loadingDots 1.5s infinite;
+        }
+
+        @keyframes loadingDots {
+            0%, 20% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .content-container {
+                margin: 16px 0 0 0;
+                padding: 20px;
+            }
+
+            .loading-animation {
+                width: 280px;
+                height: 280px;
+            }
+
+            .progress-text span {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 格線背景 -->
+    <div class="grid-background"></div>
+
+    <!-- 主容器 -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo" onclick="window.location.href='ai-essay-go-homepage.html'" style="cursor: pointer;">
+                    <img src="Asset/Ai EssayGo Logo - L.svg" alt="AI EssayGo Logo" class="logo-image">
+                </div>
+                <div class="header-right">
+                    <div class="usage-info">
+                        <div class="usage-icon">
+                            <img src="Asset/coins_solid.svg" alt="Coins Icon" class="usage-icon-image">
+                        </div>
+                        <div class="usage-text">本學期剩餘 299 次</div>
+                    </div>
+                    <button class="account-button">
+                        <div class="account-avatar">
+                            <img src="Asset/IconButton.svg" alt="Account Avatar" class="account-avatar-image">
+                        </div>
+                        <div class="account-name">王老師</div>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Loading 內容 -->
+        <main class="content">
+            <div class="content-container">
+                <div class="loading-content">
+                    <!-- Loading 動畫 -->
+                    <div class="loading-animation" id="loadingAnimation"></div>
+                    
+                    <!-- 進度文字 -->
+                    <div class="progress-container">
+                        <div class="progress-text">
+                            <span>AI 批改中<span class="loading-dots">...</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            © NANI BOOK ENTERPRISE CO., LTD. All Rights Reserved.
+        </footer>
+    </div>
+
+    <script>
+        // 載入 Lottie 動畫
+        const animation = lottie.loadAnimation({
+            container: document.getElementById('loadingAnimation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'Asset/essaygo_loading.json'
+        });
+
+        // 模擬批改完成後跳轉
+        setTimeout(() => {
+            window.location.href = 'correction-result.html';
+        }, 12000); // 12秒後跳轉到結果頁面
+    </script>
+</body>
+</html>

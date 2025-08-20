@@ -678,21 +678,8 @@ function startCorrection() {
         }
     }
     
-    // 顯示載入狀態
-    const button = document.querySelector('.main-button');
-    const originalText = button.textContent;
-    button.textContent = '批改中...';
-    button.disabled = true;
-    
-    // 模擬批改過程
-    setTimeout(() => {
-        button.textContent = originalText;
-        button.disabled = false;
-        showNotification('批改完成！正在生成報告...', 'success');
-        
-        // 這裡可以實作跳轉到結果頁面的邏輯
-        // window.location.href = '/correction-result';
-    }, 3000);
+    // 直接跳轉到 loading 頁面
+    window.location.href = 'loading.html';
 }
 
 /**

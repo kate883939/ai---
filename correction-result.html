@@ -318,8 +318,8 @@
 
         .scroll-to-top {
             position: fixed;
-            bottom: 120px;
-            right: 84px;
+            bottom: 64px;
+            right: 28px;
             width: 56px;
             height: 56px;
             background: #E3CE00;
@@ -376,6 +376,134 @@
                 border-bottom: none;
             }
         }
+
+        /* ConfirmDialog 元件樣式 */
+        .confirm-dialog-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .confirm-dialog {
+            background: #FFFFFF;
+            border-radius: 12px;
+            width: 600px;
+            max-width: 90vw;
+            box-shadow: -40px 40px 80px -8px rgba(145, 158, 171, 0.24);
+            overflow: hidden;
+        }
+
+        .dialog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 24px 24px 24px;
+        }
+
+        .dialog-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #212B36;
+            margin: 0;
+        }
+
+        .dialog-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dialog-close:hover {
+            background: rgba(145, 158, 171, 0.08);
+        }
+
+        .dialog-content {
+            padding: 24px;
+        }
+
+        .dialog-message {
+            font-size: 18px;
+            font-weight: 500;
+            color: #212B36;
+            line-height: 24px;
+            margin: 0;
+        }
+
+        .dialog-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            padding: 24px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #212B36;
+            border: 1px solid rgba(145, 158, 171, 0.32);
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-outline:hover {
+            background: rgba(145, 158, 171, 0.08);
+        }
+
+        .btn-primary {
+            background: #00A15D;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            background: #008f52;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .confirm-dialog {
+                width: 90vw;
+                margin: 20px;
+            }
+
+            .dialog-header,
+            .dialog-content,
+            .dialog-footer {
+                padding: 20px;
+            }
+
+            .dialog-title,
+            .dialog-message {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -387,7 +515,7 @@
         <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <div class="logo">
+                <div class="logo" onclick="window.location.href='ai-essay-go-homepage.html'" style="cursor: pointer;">
                     <img src="Asset/Ai EssayGo Logo - L.svg" alt="AI EssayGo Logo" class="logo-image">
                 </div>
                 <div class="header-right">
@@ -418,7 +546,7 @@
                     </div>
                     <div class="button-container">
                         <button class="btn-primary" onclick="downloadResult()">下載批改結果</button>
-                        <button class="btn-secondary" onclick="window.location.href='ai-essay-go-homepage.html'">再改一篇</button>
+                        <button class="btn-secondary" onclick="showConfirmDialog()">再改一篇</button>
                     </div>
                 </div>
 
@@ -433,8 +561,9 @@
                         <div class="score-label">作文總分</div>
                         <div class="score-content">
                             <div class="score-icon">
-                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                                    <path d="M16 4L19.09 10.26L26 11.27L20.5 16.14L21.82 23.02L16 19.77L10.18 23.02L11.5 16.14L6 11.27L12.91 10.26L16 4Z" fill="#007141"/>
+                                <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M23.5198 6.86621H26.1858C27.6525 6.86621 28.8528 8.06654 28.8528 9.5332V10.8662C28.8528 14.2662 26.2926 17.0398 22.9993 17.4531C22.1592 19.453 20.3591 20.9594 18.1858 21.3994V25.5332H23.5198V28.1992H10.1858V25.5332H15.5198V21.3994C13.3465 20.9594 11.5463 19.453 10.7063 17.4531C7.41297 17.0398 4.85278 14.2662 4.85278 10.8662V9.5332C4.85278 8.06654 6.05311 6.86621 7.51978 6.86621H10.1858V4.19922H23.5198V6.86621ZM7.51978 10.8662C7.51978 12.5995 8.63915 14.0669 10.1858 14.627V9.5332H7.51978V10.8662ZM23.5198 9.5332V14.627C25.0663 14.0669 26.1858 12.5995 26.1858 10.8662V9.5332H23.5198Z" fill="#007141"/>
+                                    <path d="M19.2358 16.0548C19.1672 16.0551 19.0996 16.0389 19.0386 16.0076L16.8529 14.8633L14.6672 16.0076C14.5224 16.0838 14.3469 16.0708 14.2148 15.9743C14.0827 15.8777 14.0171 15.7144 14.0458 15.5533L14.4743 13.1405L12.7086 11.4262C12.5964 11.3142 12.5551 11.1493 12.6015 10.9976C12.6521 10.8422 12.7868 10.7292 12.9486 10.7062L15.3915 10.3505L16.4672 8.15192C16.5388 8.00406 16.6886 7.91016 16.8529 7.91016C17.0172 7.91016 17.167 8.00406 17.2386 8.15192L18.3272 10.3462L20.77 10.7019C20.9319 10.7249 21.0665 10.838 21.1172 10.9933C21.1635 11.145 21.1223 11.3099 21.01 11.4219L19.2443 13.1362L19.6729 15.5491C19.7041 15.7131 19.6372 15.8804 19.5015 15.9776C19.4239 16.032 19.3304 16.0591 19.2358 16.0548Z" fill="#FFF460"/>
                                 </svg>
                             </div>
                             <div class="score-value">
@@ -447,8 +576,9 @@
                         <div class="score-label">作文等級</div>
                         <div class="score-content">
                             <div class="score-icon">
-                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                                    <path d="M16 4L19.09 10.26L26 11.27L20.5 16.14L21.82 23.02L16 19.77L10.18 23.02L11.5 16.14L6 11.27L12.91 10.26L16 4Z" fill="#007141"/>
+                                <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11.3083 21.68C10.8557 21.2274 11.0917 21.355 10 21.0628C9.50473 20.93 9.06932 20.6748 8.67558 20.3691L6.3126 26.1627C6.08396 26.7236 6.51104 27.333 7.11623 27.3101L9.86045 27.2054L11.7479 29.1991C12.1646 29.6387 12.8958 29.5017 13.1244 28.9408L15.8353 22.294C15.2708 22.6086 14.6442 22.793 13.9963 22.793C12.9807 22.793 12.0266 22.3977 11.3083 21.68ZM26.1872 26.1627L23.8242 20.3691C23.4305 20.6753 22.9951 20.93 22.4998 21.0628C21.4024 21.3566 21.643 21.2284 21.1915 21.68C20.4733 22.3977 19.5186 22.793 18.503 22.793C17.8551 22.793 17.2285 22.6081 16.664 22.294L19.3748 28.9408C19.6035 29.5017 20.3352 29.6387 20.7514 29.1991L22.6394 27.2054L25.3836 27.3101C25.9888 27.333 26.4158 26.7231 26.1872 26.1627ZM19.9477 20.5014C20.7436 19.6915 20.8347 19.7613 21.968 19.4524C22.6914 19.255 23.2571 18.6795 23.4508 17.9431C23.8404 16.464 23.7393 16.6426 24.8023 15.5603C25.332 15.0213 25.5388 14.2353 25.345 13.4989C24.956 12.0208 24.9555 12.2271 25.345 10.7474C25.5388 10.011 25.332 9.22503 24.8023 8.68598C23.7393 7.60371 23.8404 7.78183 23.4508 6.30322C23.2571 5.56677 22.6914 4.99126 21.968 4.79387C20.516 4.39752 20.691 4.50117 19.6269 3.41838C19.0972 2.87932 18.3249 2.66839 17.6014 2.86578C16.1499 3.26161 16.3525 3.26213 14.8984 2.86578C14.1749 2.66839 13.4026 2.8788 12.8729 3.41838C11.8099 4.50065 11.9849 4.39752 10.5323 4.79387C9.80889 4.99126 9.24327 5.56677 9.04953 6.30322C8.66047 7.78183 8.76099 7.60371 7.69799 8.68598C7.16831 9.22503 6.96103 10.011 7.15529 10.7474C7.54435 12.2245 7.54487 12.0182 7.15529 13.4984C6.96155 14.2348 7.16831 15.0208 7.69799 15.5603C8.76099 16.6426 8.65995 16.464 9.04953 17.9431C9.24327 18.6795 9.80889 19.255 10.5323 19.4524C11.6979 19.7701 11.7849 19.7201 12.5521 20.5014C13.2411 21.2029 14.3145 21.3284 15.1426 20.8045C15.4738 20.5943 15.8579 20.4826 16.2502 20.4826C16.6424 20.4826 17.0265 20.5943 17.3577 20.8045C18.1853 21.3284 19.2587 21.2029 19.9477 20.5014ZM11.3365 11.9578C11.3365 9.19587 13.5364 6.95685 16.2499 6.95685C18.9634 6.95685 21.1633 9.19587 21.1633 11.9578C21.1633 14.7197 18.9634 16.9587 16.2499 16.9587C13.5364 16.9587 11.3365 14.7197 11.3365 11.9578Z" fill="#007141"/>
+                                    <path d="M19.9478 20.4975C20.7437 19.6876 20.8348 19.7574 21.9681 19.4485C22.6915 19.2511 23.2572 18.6756 23.4509 17.9392C23.8405 16.46 23.7394 16.6387 24.8024 15.5564C25.3321 15.0174 25.5389 14.2314 25.3451 13.495C24.9561 12.0169 24.9556 12.2231 25.3451 10.7435C25.5389 10.007 25.3321 9.22113 24.8024 8.68207C23.7394 7.5998 23.8405 7.77793 23.4509 6.29931C23.2572 5.56287 22.6915 4.98736 21.9681 4.78996C20.5161 4.39362 20.6911 4.49726 19.627 3.41447C19.0973 2.87542 18.325 2.66448 17.6015 2.86188C16.15 3.2577 16.3526 3.25822 14.8985 2.86188C14.175 2.66448 13.4027 2.8749 12.873 3.41447C11.81 4.49674 11.985 4.39362 10.5324 4.78996C9.80898 4.98736 9.24337 5.56287 9.04962 6.29931C8.66057 7.77793 8.76109 7.5998 7.69809 8.68207C7.16841 9.22113 6.96112 10.007 7.15539 10.7435C7.54445 12.2205 7.54497 12.0143 7.15539 13.4945C6.96164 14.2309 7.16841 15.0168 7.69809 15.5564C8.76109 16.6387 8.66005 16.46 9.04962 17.9392C9.24337 18.6756 9.80898 19.2511 10.5324 19.4485C11.698 19.7662 11.785 19.7162 12.5522 20.4975C13.2412 21.199 14.3146 21.3245 15.1427 20.8006C15.4739 20.5904 15.858 20.4787 16.2503 20.4787C16.6425 20.4787 17.0266 20.5904 17.3578 20.8006C18.1854 21.3245 19.2588 21.199 19.9478 20.4975ZM11.3366 11.9539C11.3366 9.19196 13.5365 6.95294 16.25 6.95294C18.9635 6.95294 21.1634 9.19196 21.1634 11.9539C21.1634 14.7158 18.9635 16.9548 16.25 16.9548C13.5365 16.9548 11.3366 14.7158 11.3366 11.9539Z" fill="#E3CE00"/>
                                 </svg>
                             </div>
                             <div class="score-value">
@@ -639,10 +769,31 @@
 
         <!-- 回到頂部按鈕 -->
         <button class="scroll-to-top" onclick="scrollToTop()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z" fill="#212B36"/>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.5 10.0703C7.075 10.0703 6.71875 9.92656 6.43125 9.63906C6.14375 9.35156 6 8.99531 6 8.57031C6 8.14531 6.14375 7.78906 6.43125 7.50156C6.71875 7.21406 7.075 7.07031 7.5 7.07031H28.5C28.925 7.07031 29.2812 7.21406 29.5687 7.50156C29.8562 7.78906 30 8.14531 30 8.57031C30 8.99531 29.8562 9.35156 29.5687 9.63906C29.2812 9.92656 28.925 10.0703 28.5 10.0703H7.5ZM18 31.4989C17.575 31.4989 17.2187 31.3551 16.9312 31.0676C16.6437 30.7801 16.5 30.4239 16.5 29.9989V16.1989L13.65 19.0489C13.375 19.3239 13.025 19.4614 12.6 19.4614C12.175 19.4614 11.825 19.3239 11.55 19.0489C11.275 18.7739 11.1375 18.4239 11.1375 17.9989C11.1375 17.5739 11.275 17.2239 11.55 16.9489L16.95 11.5489C17.1 11.3989 17.2625 11.2926 17.4375 11.2301C17.6125 11.1676 17.8 11.1364 18 11.1364C18.2 11.1364 18.3875 11.1676 18.5625 11.2301C18.7375 11.2926 18.9 11.3989 19.05 11.5489L24.45 16.9489C24.725 17.2239 24.8625 17.5739 24.8625 17.9989C24.8625 18.4239 24.725 18.7739 24.45 19.0489C24.175 19.3239 23.825 19.4614 23.4 19.4614C22.975 19.4614 22.625 19.3239 22.35 19.0489L19.5 16.1989V29.9989C19.5 30.4239 19.3563 30.7801 19.0688 31.0676C18.7813 31.3551 18.425 31.4989 18 31.4989Z" fill="#212B36"/>
             </svg>
         </button>
+
+        <!-- 確認對話框 -->
+        <div id="confirmDialog" class="confirm-dialog-overlay">
+            <div class="confirm-dialog">
+                <div class="dialog-header">
+                    <h3 class="dialog-title">即將離開批改結果</h3>
+                    <button class="dialog-close" onclick="hideConfirmDialog()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="#637381"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="dialog-content">
+                    <p class="dialog-message">此頁內容將不會保存，離開前請先下載批改結果</p>
+                </div>
+                <div class="dialog-footer">
+                    <button class="btn-outline" onclick="hideConfirmDialog()">停留此頁</button>
+                    <button class="btn-primary" onclick="confirmLeave()">再改一篇</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -666,6 +817,41 @@
             } else {
                 scrollButton.style.display = 'none';
             }
+        });
+
+        // ConfirmDialog 元件功能
+        function showConfirmDialog() {
+            const dialog = document.getElementById('confirmDialog');
+            dialog.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // 防止背景滾動
+        }
+
+        function hideConfirmDialog() {
+            const dialog = document.getElementById('confirmDialog');
+            dialog.style.display = 'none';
+            document.body.style.overflow = 'auto'; // 恢復背景滾動
+        }
+
+        function confirmLeave() {
+            // 跳轉到首頁
+            window.location.href = 'ai-essay-go-homepage.html';
+        }
+
+        // 點擊背景關閉對話框
+        document.addEventListener('DOMContentLoaded', function() {
+            const dialog = document.getElementById('confirmDialog');
+            dialog.addEventListener('click', function(e) {
+                if (e.target === dialog) {
+                    hideConfirmDialog();
+                }
+            });
+
+            // ESC 鍵關閉對話框
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    hideConfirmDialog();
+                }
+            });
         });
     </script>
 </body>
