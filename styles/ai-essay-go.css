@@ -7,8 +7,10 @@
 
 body {
     font-family: 'Noto Sans TC', sans-serif;
-    background: #FFFBE6;
+    background: var(--background-default);
     min-height: 100vh;
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* 設計系統變數 */
@@ -22,6 +24,8 @@ body {
     --primary-transparent-12: rgba(0, 161, 93, 0.12);
     --primary-transparent-16: rgba(0, 161, 93, 0.16);
     --primary-transparent-24: rgba(0, 161, 93, 0.24);
+    --primary-transparent-32: rgba(0, 161, 93, 0.32);
+    --primary-transparent-48: rgba(0, 161, 93, 0.48);
 
     /* 次要品牌色 */
     --secondary-50: #FDFACA;
@@ -32,29 +36,83 @@ body {
     --secondary-transparent-8: rgba(227, 206, 0, 0.08);
     --secondary-transparent-12: rgba(227, 206, 0, 0.12);
 
-    /* 中性色 */
-    --neutral-50: #F9FAFB;
-    --neutral-100: #F4F6F8;
-    --neutral-200: #DFE3E8;
-    --neutral-300: #C4CDD5;
-    --neutral-400: #919EAB;
-    --neutral-500: #637381;
-    --neutral-600: #454F5B;
-    --neutral-700: #212B36;
-    --neutral-800: #161C24;
-    --neutral-900: #000000;
+    /* 灰色系統 */
+    --grey-100: #F9FAFB;
+    --grey-200: #F4F6F8;
+    --grey-300: #DFE3E8;
+    --grey-400: #C4CDD5;
+    --grey-500: #919EAB;
+    --grey-600: #637381;
+    --grey-700: #454F5B;
+    --grey-800: #212B36;
+    --grey-850: #1A2129;
+    --grey-900: #161C24;
 
     /* 語義色 */
+    /* Success 顏色系統 */
+    --success-50: #E9FCD4;
+    --success-100: #AAF27F;
     --success-500: #54D62C;
+    --success-700: #229A16;
+    --success-900: #08660D;
+    --success-transparent-8: rgba(84, 214, 44, 0.08);
+    --success-transparent-12: rgba(84, 214, 44, 0.12);
+    --success-transparent-16: rgba(84, 214, 44, 0.16);
+    --success-transparent-24: rgba(84, 214, 44, 0.24);
+    --success-transparent-32: rgba(84, 214, 44, 0.32);
+    --success-transparent-48: rgba(84, 214, 44, 0.48);
+    
+    /* Warning 顏色系統 */
+    --warning-50: #FFF6D8;
+    --warning-100: #FFDC8A;
     --warning-500: #FFB73D;
     --warning-700: #B7731E;
+    --warning-900: #7A400B;
+    --warning-transparent-8: rgba(255, 183, 61, 0.08);
+    --warning-transparent-12: rgba(255, 183, 61, 0.12);
+    --warning-transparent-16: rgba(255, 183, 61, 0.16);
+    --warning-transparent-24: rgba(255, 183, 61, 0.24);
+    --warning-transparent-32: rgba(255, 183, 61, 0.32);
+    --warning-transparent-48: rgba(255, 183, 61, 0.48);
+    
+    /* Error 顏色系統 */
+    --error-50: #FFE7D9;
+    --error-100: #FFA48D;
     --error-500: #FF4842;
+    --error-700: #B72136;
+    --error-900: #7A0C2E;
+    --error-transparent-8: rgba(255, 72, 66, 0.08);
+    --error-transparent-12: rgba(255, 72, 66, 0.12);
+    --error-transparent-16: rgba(255, 72, 66, 0.16);
+    --error-transparent-24: rgba(255, 72, 66, 0.24);
+    --error-transparent-32: rgba(255, 72, 66, 0.32);
+    --error-transparent-48: rgba(255, 72, 66, 0.48);
+    
+    /* Info 顏色系統 */
+    --info-50: #D0F2FF;
+    --info-100: #74CAFF;
     --info-500: #1890FF;
+    --info-700: #0C53B7;
+    --info-900: #04297A;
+    --info-transparent-8: rgba(24, 144, 255, 0.08);
+    --info-transparent-12: rgba(24, 144, 255, 0.12);
+    --info-transparent-16: rgba(24, 144, 255, 0.16);
+    --info-transparent-24: rgba(24, 144, 255, 0.24);
+    --info-transparent-32: rgba(24, 144, 255, 0.32);
+    --info-transparent-48: rgba(24, 144, 255, 0.48);
+
+    /* Other 顏色系統 */
+    --other-input-button: rgba(145, 158, 171, 0.32);
+    --other-divider: rgba(145, 158, 171, 0.24);
 
     /* 背景色 */
-    --background-default: #FFFFFF;
+    --background-default: #FFFBE6;
+    --background-header: #F7ECA3;
     --background-paper: #FFFFFF;
     --background-neutral: #F4F6F8;
+    
+    /* 漸層色 */
+    --primary-gradient: linear-gradient(90deg, rgba(0, 170, 255, 1) 0%, rgba(0, 208, 201, 1) 100%);
 
     /* 文字色 */
     --text-primary: #212B36;
@@ -65,6 +123,7 @@ body {
     /* 邊框色 */
     --border-light: rgba(145, 158, 171, 0.12);
     --border-main: rgba(145, 158, 171, 0.24);
+    --border-header: var(--secondary-500);
 
     /* 陰影 */
     --shadow-light: rgba(145, 158, 171, 0.08);
@@ -133,11 +192,12 @@ body {
 
 /* Header */
 .header {
-    background: #F7ECA3;
-    border-bottom: 1px solid #E2D36B;
+    background: var(--background-header);
+    border-bottom: 1px solid var(--border-header);
     box-shadow: 0px 8px 16px 0px var(--shadow-light);
     backdrop-filter: blur(10px);
     height: 72px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .header-content {
@@ -147,7 +207,7 @@ body {
     padding: 16px 120px;
     height: 72px;
 
-    border-bottom: 2px solid #E2CE49;
+    border-bottom: 2px solid var(--border-header);
     width: 100%;
 }
 
@@ -194,8 +254,9 @@ body {
 .usage-text {
     font-size: 18px;
     font-weight: 500;
-    color: #212B36;
+    color: var(--text-primary);
     line-height: 1.333;
+    transition: color 0.3s ease;
 }
 
 .account-button {
@@ -232,8 +293,9 @@ body {
 .account-name {
     font-size: 18px;
     font-weight: 500;
-    color: #212B36;
+    color: var(--text-primary);
     line-height: 1.333;
+    transition: color 0.3s ease;
 }
 
 /* 內容區域 */
@@ -340,7 +402,7 @@ body {
 
 /* 上傳區域 */
 .upload-section {
-    background: var(--background-default);
+    background: var(--background-paper);
     border-radius: 22px;
     box-shadow: 0px 16px 32px -4px var(--shadow-light);
     overflow: hidden;
@@ -353,11 +415,7 @@ body {
 
 .section-header {
     align-items: flex-start;
-    background: linear-gradient(
-        90deg,
-        rgba(0, 170, 255, 1) 0%,
-        rgba(0, 208, 201, 1) 100%
-    );
+    background: var(--primary-gradient);
     border-radius: 20px 20px 0px 0px;
     display: flex;
     flex-direction: column;
@@ -370,7 +428,7 @@ body {
 .section-header .frame {
     align-items: center;
     align-self: stretch;
-    border-color: #b1e3ff;
+    border-color: var(--background-paper);
     border-left-style: dashed;
     border-left-width: 2px;
     border-radius: 16px 16px 0px 0px;
@@ -387,7 +445,7 @@ body {
 }
 
 .section-header .text-wrapper {
-    color: #ffffff;
+    color: var(--text-inverse);
     font-family: 'Noto Sans TC', sans-serif;
     font-size: 20px;
     font-weight: 700;
@@ -441,17 +499,23 @@ body {
 }
 
 .toggle-button:not(.active):hover {
-    background: rgba(0, 161, 93, 0.08);
+    background: rgba(0, 161, 93, 0.24);
+}
+
+.toggle-button.selected {
+    background: var(--primary-700);
+    color: #FFFFFF;
 }
 
 
 /* Upload Area - 根據 Figma 設計稿重新設計 */
 .upload-area {
-    border: 1px dashed rgba(145, 158, 171, 0.32);
+    border: 1px dashed var(--border-main);
     border-radius: 8px;
-    background: #F9FAFB;
+    background: var(--background-neutral);
     padding: 40px 0;
     width: 100%;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* 文字上傳模式下的 upload area 樣式 */
@@ -501,8 +565,9 @@ body {
     font-weight: 700;
     font-size: 20px;
     line-height: 1.5;
-    color: #212B36;
+    color: var(--text-primary);
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .upload-description {
@@ -510,8 +575,9 @@ body {
     font-weight: 500;
     font-size: 18px;
     line-height: 1.333;
-    color: #637381;
+    color: var(--text-secondary);
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .upload-button {
@@ -599,7 +665,7 @@ body {
     font-size: 18px;
     line-height: 1.333;
     color: #212B36;
-    background: #FFFFFF;
+    background: var(--background-paper);
     resize: vertical;
     transition: all 0.2s ease;
     box-sizing: border-box;
@@ -642,50 +708,7 @@ body {
     }
 }
 
-/* 選擇檔案按鈕 */
-.select-file-button {
-    background-color: var(--secondary-500);
-    color: var(--text-primary);
-    border: none;
-    border-radius: 6px;
-    padding: 8px 16px;
-    font-family: inherit;
-    font-size: 18px;
-    font-weight: var(--font-weight-bold);
-    cursor: pointer;
-    transition: var(--transition-normal);
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-    user-select: none;
-    outline: none;
-    width: fit-content;
-    min-width: fit-content;
-    white-space: nowrap;
-}
 
-.select-file-button:hover:not(:disabled) {
-    background-color: var(--secondary-700);
-}
-
-.select-file-button:active:not(:disabled) {
-    background-color: var(--secondary-700);
-    transform: translateY(1px);
-}
-
-.select-file-button:disabled {
-    background-color: var(--neutral-300);
-    color: var(--text-disabled);
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-.select-file-button:focus-visible {
-    box-shadow: 0 0 0 3px var(--secondary-transparent-24);
-}
 
 /* 檔案列表區域 */
 .file-list-container {
@@ -709,19 +732,14 @@ body {
     gap: 16px;
 }
 
-/* 檔案保持垂直排列，符合設計稿 */
-.file-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
+
 
 .file-item {
     display: flex;
     align-items: center;
     gap: 16px;
     padding: 8px 20px 8px 8px;
-    background: var(--background-default);
+    background: var(--background-paper);
     border: 1px solid rgba(145, 158, 171, 0.32);
     border-radius: 8px;
     width: 100%;
@@ -801,7 +819,7 @@ body {
 
 /* 表單區域 */
 .form-section {
-    background: var(--background-default);
+    background: var(--background-paper);
     border-radius: 22px;
     box-shadow: 0px 16px 32px -4px var(--shadow-light);
     margin-bottom: 24px;
@@ -846,11 +864,7 @@ body {
     cursor: pointer;
 }
 
-.radio-input {
-    width: 20px;
-    height: 20px;
-    accent-color: var(--primary-500);
-}
+
 
 .radio-label {
     font-size: 18px;
@@ -859,12 +873,12 @@ body {
 
 .text-input {
     padding: 16px 14px;
-    border: 2px solid rgba(145, 158, 171, 0.32);
+    border: 2px solid var(--other-input-button);
     border-radius: 6px;
     font-family: inherit;
     font-size: 18px;
     color: var(--text-primary);
-    background: var(--background-default);
+    background: var(--background-paper);
     transition: var(--transition-normal);
     height: 56px;
     box-sizing: border-box;
@@ -888,14 +902,14 @@ body {
 .accordion {
     border: none;
     border-radius: 6px;
-    background: rgba(0, 161, 93, 0.08);
+    background: var(--primary-transparent-8);
     cursor: pointer;
     transition: all 225ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .accordion.active {
     border-radius: 6px 6px 0px 0px;
-    background: rgba(0, 161, 93, 0.12);
+    background: var(--primary-transparent-12);
 }
 
 .accordion-header {
@@ -914,7 +928,7 @@ body {
     font-weight: 500;
     font-size: 18px;
     line-height: 1.333;
-    color: #212B36;
+    color: var(--text-primary);
 }
 
 .accordion-status {
@@ -928,7 +942,7 @@ body {
     font-weight: 500;
     font-size: 16px;
     line-height: 1.375;
-    color: #212B36;
+    color: var(--text-primary);
 }
 
 .accordion-icon {
@@ -937,7 +951,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #212B36;
+    color: var(--text-primary);
     transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -946,7 +960,7 @@ body {
 }
 
 .accordion-content {
-    background: rgba(145, 158, 171, 0.08);
+    background: var(--background-neutral);
     border: none;
     border-radius: 0px 0px 6px 6px;
     position: relative;
@@ -1002,31 +1016,45 @@ body {
 }
 
 .radio-input {
-    width: 41px;
-    height: 40px;
-    border: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--text-secondary);
     background: transparent;
     cursor: pointer;
     appearance: none;
     position: relative;
     transition: all 0.2s ease;
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDEiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MSA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMC45NzE3IDIwQzEwLjk3MTcgMjUuNTIyOCAxNS40NDg4IDMwIDIwLjk3MTcgMzBDMjYuNDk0NSAzMCAzMC45NzE3IDI1LjUyMjggMzAuOTcxNyAyMEMzMC45NzE3IDE0LjQ3NzIgMjYuNDk0NSAxMCAyMC45NzE3IDEwQzE1LjQ0ODggMTAgMTAuOTcxNyAxNC40NzcyIDEwLjk3MTcgMjBaTTEyLjk3MTcgMjBDMTIuOTcxNyAxNS41ODE3IDE2LjU1MzQgMTIgMjAuOTcxNyAxMkMyNS4zOSAxMiAyOC45NzE3IDE1LjU4MTcgMjguOTcxNyAyMEMyOC45NzE3IDI0LjQxODMgMjUuMzkgMjggMjAuOTcxNyAyOEMxNi41NTM0IDI4IDEyLjk3MTcgMjQuNDE4MyAxMi45NzE3IDIwWiIgZmlsbD0iIzYzNzM4MSIvPgo8L3N2Zz4K');
-    background-size: 41px 40px;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: content-box;
+    background-clip: content-box;
+    margin: 10px
 }
 
 .radio-input:hover {
-    background-color: rgba(99, 115, 129, 0.08);
+    border-color: var(--primary-500);
+    background-color: rgba(0, 161, 93, 0.08);
+    background-clip: content-box;
 }
 
 .radio-input:checked {
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDEiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MSA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMC45NzE3IDEwQzE1LjQ0ODggMTAgMTAuOTcxNyAxNC40NzcyIDEwLjk3MTcgMjBDMTAuOTcxNyAyNS41MjI4IDE1LjQ0ODggMzAgMjAuOTcxNyAzMEMyNi40OTQ1IDMwIDMwLjk3MTcgMjUuNTIyOCAzMC45NzE3IDIwQzMwLjk3MTcgMTcuMzQ3OCAyOS45MTgxIDE0LjgwNDMgMjguMDQyNyAxMi45Mjg5QzI2LjE2NzQgMTEuMDUzNiAyMy42MjM4IDEwIDIwLjk3MTcgMTBaTTIwLjk3MTcgMjhDMTYuNTUzNCAyOCAxMi45NzE3IDI0LjQxODMgMTIuOTcxNyAyMEMxMi45NzE3IDE1LjU4MTcgMTYuNTUzNCAxMiAyMC45NzE3IDEyQzI1LjM5IDEyIDI4Ljk3MTcgMTUuNTgxNyAyOC45NzE3IDIwQzI4Ljk3MTcgMjIuMTIxNyAyOC4xMjg4IDI0LjE1NjYgMjYuNjI4NSAyNS42NTY5QzI1LjEyODIgMjcuMTU3MSAyMy4wOTM0IDI4IDIwLjk3MTcgMjhaTTE1Ljk3MTcgMjBDMTUuOTcxNyAxNy4yMzg2IDE4LjIxMDMgMTUgMjAuOTcxNyAxNUMyMy43MzMxIDE1IDI1Ljk3MTcgMTcuMjM4NiAyNS45NzE3IDIwQzI1Ljk3MTcgMjIuNzYxNCAyMy43MzMxIDI1IDIwLjk3MTcgMjVDMTguMjEwMyAyNSAxNS45NzE3IDIyLjc2MTQgMTUuOTcxNyAyMFoiIGZpbGw9IiMwMEExNUQiLz4KPC9zdmc+Cg==');
-    background-size: 41px 40px;
-    background-repeat: no-repeat;
-    background-position: center;
+    border-color: var(--primary-500);
+    background-color: var(--primary-500);
 }
+
+.radio-input:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+
 
 .radio-label {
     font-family: 'Noto Sans TC', sans-serif;
@@ -1055,30 +1083,44 @@ body {
 }
 
 .checkbox-input {
-    width: 40px;
-    height: 40px;
-    border: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--text-secondary);
     background: transparent;
     cursor: pointer;
     appearance: none;
     position: relative;
     transition: all 0.2s ease;
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI3IDkuNUMyOC45MzMgOS41IDMwLjUgMTEuMDY3IDMwLjUgMTNWMjdDMzAuNSAyOC45MzMgMjguOTMzIDMwLjUgMjcgMzAuNUgxM0MxMS4wNjcgMzAuNSA5LjUgMjguOTMzIDkuNSAyN1YxM0M5LjUgMTEuMDY3IDExLjA2NyA5LjUgMTMgOS41SDI3Wk0xMyAxMS44MzNDMTIuMzU1NyAxMS44MzMgMTEuODMzIDEyLjM1NTcgMTEuODMzIDEzVjI3QzExLjgzMyAyNy42NDQzIDEyLjM1NTcgMjguMTY3IDEzIDI4LjE2N0gyN0MyNy42NDQzIDI4LjE2NyAyOC4xNjcgMjcuNjQ0MyAyOC4xNjcgMjdWMTNDMjguMTY3IDEyLjM1NTcgMjcuNjQ0MyAxMS44MzMgMjcgMTEuODMzSDEzWiIgZmlsbD0iIzYzNzM4MSIvPgo8L3N2Zz4K');
-    background-size: 40px 40px;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 20px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 10px;
+    box-sizing: content-box;
+    background-clip: content-box;
 }
 
 .checkbox-input:hover {
-    background-color: rgba(99, 115, 129, 0.08);
+    border-color: var(--primary-500);
+    background-color: rgba(0, 161, 93, 0.08);
+    background-clip: content-box;
 }
 
 .checkbox-input:checked {
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI3IDkuNUMyOC45MzMgOS41IDMwLjUgMTEuMDY3IDMwLjUgMTNWMjdDMzAuNSAyOC45MzMgMjguOTMzIDMwLjUgMjcgMzAuNUgxM0MxMS4wNjcgMzAuNSA5LjUgMjguOTMzIDkuNSAyN1YxM0M5LjUgMTEuMDY3IDExLjA2NyA5LjUgMTMgOS41SDI3Wk0yNC4yMzM0IDE1LjMwMDhDMjMuODE3NyAxNS4yNDczIDIzLjQwNDcgMTUuNDE5OCAyMy4xNTA0IDE1Ljc1MjlMMTguNzQwMiAyMS41ODY5TDE2LjgzNzkgMTkuMTYwMkMxNi41ODE1IDE4LjgzMSAxNi4xNjkxIDE4LjY2MzQgMTUuNzU1OSAxOC43MjA3QzE1LjM0MjYgMTguNzc4MSAxNC45OTA5IDE5LjA1MTkgMTQuODM0IDE5LjQzODVDMTQuNjc3MyAxOS44MjQ5IDE0LjczOSAyMC4yNjU2IDE0Ljk5NTEgMjAuNTk0N0wxNy44NDE4IDI0LjIyMzZDMTguMDY0NCAyNC41MDUyIDE4LjQwNDcgMjQuNjY4OSAxOC43NjM3IDI0LjY2N0MxOS4xMjQ1IDI0LjY2NiAxOS40NjQ0IDI0LjQ5NzcgMTkuNjg0NiAyNC4yMTE5TDI1LjAxNjYgMTcuMjExOVYxNy4xNzY4QzI1LjI3MDkgMTYuODQzMyAyNS4zMjc3IDE2LjM5OTYgMjUuMTY2IDE2LjAxMjdDMjUuMDA0NCAxNS42MjU5IDI0LjY0OTEgMTUuMzU0NCAyNC4yMzM0IDE1LjMwMDhaIiBmaWxsPSIjMDBBMTVEIi8+Cjwvc3ZnPgo=');
-    background-size: 40px 40px;
-    background-repeat: no-repeat;
-    background-position: center;
+    border-color: var(--primary-500);
+    background-color: var(--primary-500);
+    background-clip: content-box;
+}
+
+.checkbox-input:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 6px;
+    height: 10px;
+    border: 2px solid white;
+    border-top: none;
+    border-left: none;
 }
 
 .checkbox-label {
@@ -1086,7 +1128,7 @@ body {
     font-weight: 400;
     font-size: 18px;
     line-height: 1.333;
-    color: #212B36;
+    color: var(--text-primary);
     cursor: default;
     user-select: none;
 }
@@ -1126,6 +1168,7 @@ body {
     padding: var(--spacing-xl) var(--spacing-xxl);
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
+    transition: color 0.3s ease;
 }
 
 /* 響應式設計 */
@@ -1210,9 +1253,5 @@ body {
 
 
     
-    .select-file-button {
-        font-size: 16px;
-        padding: 6px 12px;
-        height: 36px;
-    }
+
 }

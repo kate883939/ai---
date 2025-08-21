@@ -1,0 +1,398 @@
+/* Dark Mode 樣式 */
+[data-theme="dark"] {
+
+
+
+
+    /* 語義色 - 在 dark mode 中調整 */
+    --success-500: #54D62C;
+    --warning-500: #FFB73D;
+    --warning-700: #FFD666;
+    --error-500: #FF4842;
+    --info-500: #1890FF;
+
+    /* 背景色 - dark mode 反轉 */
+    --background-default: var(--grey-900);
+    --background-header: var(--grey-850);
+    --background-paper: var(--grey-800);
+    --background-neutral: rgba(145, 158, 171, 0.16);
+    
+    /* 漸層色 - 在 dark mode 中降低明度並設為 80% 透明 */
+    --primary-gradient: linear-gradient(90deg, rgba(0, 170, 255, 0.8) 0%, rgba(0, 208, 201, 0.8) 100%);
+
+    /* 文字色 - dark mode 反轉 */
+    --text-primary: #FFFFFF;
+    --text-secondary: var(--grey-400);
+    --text-disabled: var(--grey-600);
+    --text-inverse: #212B36;
+
+    /* 邊框色 - dark mode 調整 */
+    --border-light: rgba(255, 255, 255, 0.12);
+    --border-main: rgba(255, 255, 255, 0.24);
+    --border-header: var(--other-divider);
+
+    /* 陰影 - dark mode 調整 */
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-main: rgba(0, 0, 0, 0.16);
+    --shadow-dark: rgba(0, 0, 0, 0.24);
+}
+
+/* Dark Mode 特定樣式 */
+[data-theme="dark"] body {
+    background: var(--background-default);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .grid-background {
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+[data-theme="dark"] .header {
+    background: var(--background-header);
+    border-bottom: 1px solid var(--border-main);
+}
+
+[data-theme="dark"] .usage-text {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .account-name {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .banner {
+    background: transparent;
+}
+
+[data-theme="dark"] .banner-description {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .feature-tag {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(168, 255, 252, 1) 100%);
+    color: #04297A;
+    border: 1px solid #0098E4;
+}
+
+[data-theme="dark"] .upload-section,
+[data-theme="dark"] .form-section {
+    background: var(--background-paper);
+    border: 2px solid rgba(0, 208, 201, 0.8);
+}
+
+[data-theme="dark"] .section-header {
+    background: var(--primary-gradient);
+}
+
+[data-theme="dark"] .section-header .frame {
+    border-color: var(--grey-850);
+}
+
+[data-theme="dark"] .section-header .text-wrapper {
+    color: var(--text-inverse);
+}
+
+[data-theme="dark"] .toggle-button {
+    background: transparent;
+    color: var(--primary-500);
+    border: none;
+}
+
+[data-theme="dark"] .toggle-button.active {
+    background: var(--primary-500);
+    color: #FFFFFF;
+    border-color: var(--primary-500);
+}
+
+[data-theme="dark"] .toggle-button.selected {
+    background: var(--primary-700);
+    color: #FFFFFF;
+    border-color: var(--primary-700);
+}
+
+[data-theme="dark"] .toggle-button:not(.active):hover {
+    background: rgba(0, 161, 93, 0.24);
+}
+
+[data-theme="dark"] .upload-area {
+    background: var(--background-neutral);
+    border: 2px dashed var(--border-main);
+}
+
+[data-theme="dark"] .upload-area.text-mode {
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+[data-theme="dark"] .upload-title {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .upload-description {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .upload-button {
+    background: var(--secondary-500);
+    color: #212B36;
+}
+
+[data-theme="dark"] .upload-button:hover {
+    background: var(--secondary-700);
+}
+
+[data-theme="dark"] .file-item {
+    background: var(--background-paper);
+}
+
+[data-theme="dark"] .delete-button {
+    background: rgba(255, 72, 66, 0.16);
+    color: var(--error-500);
+}
+
+[data-theme="dark"] .delete-icon {
+    color: var(--error-500);
+}
+
+[data-theme="dark"] .form-group label {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea {
+    background: var(--background-neutral);
+    border: 1px solid var(--border-main);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group select:focus,
+[data-theme="dark"] .form-group textarea:focus {
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 2px var(--primary-transparent-12);
+}
+
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .form-group textarea::placeholder {
+    color: var(--text-disabled);
+}
+
+[data-theme="dark"] .essay-textarea {
+    background: var(--background-paper);
+    color: var(--text-primary);
+    border: 2px solid var(--border-main);
+}
+
+[data-theme="dark"] .text-counter {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .radio-input {
+    border-color: var(--text-secondary);
+}
+
+[data-theme="dark"] .radio-input:hover {
+    border-color: var(--primary-500);
+    background-color: rgba(0, 161, 93, 0.08);
+}
+
+[data-theme="dark"] .radio-input:checked {
+    border-color: var(--primary-500);
+    background-color: var(--primary-500);
+}
+
+[data-theme="dark"] .radio-input:checked::after {
+    background-color: white;
+}
+
+[data-theme="dark"] .checkbox-input {
+    border-color: var(--text-secondary);
+}
+
+[data-theme="dark"] .checkbox-input:hover {
+    border-color: var(--primary-500);
+    background-color: rgba(0, 161, 93, 0.08);
+    background-clip: content-box;
+}
+
+[data-theme="dark"] .checkbox-input:checked {
+    border-color: var(--primary-500);
+    background-color: var(--primary-500);
+    background-clip: content-box;
+}
+
+[data-theme="dark"] .checkbox-input:checked::after {
+    border-color: white;
+}
+
+[data-theme="dark"] .radio-label {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .checkbox-label {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .accordion-title {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .accordion-status-text {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .accordion-icon {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .accordion-content {
+    background: var(--background-neutral);
+}
+
+[data-theme="dark"] .accordion {
+    background: var(--primary-transparent-24);
+}
+
+[data-theme="dark"] .accordion.active {
+    background: var(--primary-transparent-32);
+}
+
+[data-theme="dark"] .text-input {
+    background: var(--background-paper);
+    border: 2px solid var(--other-input-button);
+    color: var(--text-primary);
+}
+
+
+
+[data-theme="dark"] .main-button {
+    background: var(--primary-500);
+    color: var(--text-inverse);
+}
+
+[data-theme="dark"] .main-button:hover {
+    background: var(--primary-700);
+}
+
+[data-theme="dark"] .main-button:disabled {
+    background: var(--grey-400);
+    color: var(--text-disabled);
+}
+
+[data-theme="dark"] .footer {
+    color: var(--text-secondary);
+}
+
+/* Dark Mode 切換按鈕樣式 */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: var(--background-paper);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px var(--shadow-main);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px var(--shadow-dark);
+}
+
+.theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+[data-theme="dark"] .theme-toggle svg {
+    transform: rotate(180deg);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .theme-toggle {
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .theme-toggle svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Correction Result 頁面 Dark Mode 樣式 */
+[data-theme="dark"] .content-container {
+    background: var(--background-paper);
+    border: 1px solid var(--border-main);
+}
+
+[data-theme="dark"] .result-title {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .result-time {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .topic-section {
+    background: var(--primary-transparent-12);
+}
+
+[data-theme="dark"] .topic-text {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .table-container {
+    background: var(--background-paper);
+    border: 1px solid var(--border-main);
+}
+
+[data-theme="dark"] .table-header {
+    background: var(--background-neutral);
+}
+
+[data-theme="dark"] .table-header th {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .table-row {
+    border-bottom: 1px solid var(--border-light);
+}
+
+[data-theme="dark"] .table-row:hover {
+    background: var(--background-neutral);
+}
+
+[data-theme="dark"] .table-cell {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .table-cell.description {
+    color: var(--text-secondary);
+}
+
+/* Loading 頁面 Dark Mode 樣式 */
+[data-theme="dark"] .loading-content {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .progress-text span {
+    color: var(--text-primary);
+}

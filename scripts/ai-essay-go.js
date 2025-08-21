@@ -267,7 +267,7 @@ function displayFileInfo(files) {
                 return `
                     <div class="file-list-section" style="margin-bottom: 16px;">
                         <div class="page-number" style="font-size: 18px; font-weight: 500; color: var(--text-primary); line-height: 1.333; margin-bottom: 8px;">檔案${fileNumber}</div>
-                        <div class="file-item" style="display: flex; align-items: center; gap: 16px; padding: 8px 20px 8px 8px; background: var(--background-default); border: 1px solid rgba(145, 158, 171, 0.32); border-radius: 8px; width: 100%; transition: all 0.2s ease;">
+                        <div class="file-item" style="display: flex; align-items: center; gap: 16px; padding: 8px 20px 8px 8px; background: var(--background-paper); border: 1px solid rgba(145, 158, 171, 0.32); border-radius: 8px; width: 100%; transition: all 0.2s ease;">
                             <div class="file-preview" style="width: 132px; height: 99px; border-radius: 4px; overflow: hidden; flex-shrink: 0; position: relative; background: ${isPdf ? '#F4F6F8' : 'transparent'}; display: flex; align-items: center; justify-content: center;">
                                 ${isImage ? `<img src="" alt="檔案預覽" style="width: 100%; height: 100%; object-fit: cover;">` : '<div style="font-size: 24px; color: #637381;">📄</div>'}
                                 ${isUploading ? `
@@ -280,13 +280,13 @@ function displayFileInfo(files) {
                                 <div class="file-name" style="font-size: 18px; font-weight: 500; color: var(--text-primary); line-height: 1.333;">${file.name}</div>
                                 <div class="file-size" style="font-size: 18px; font-weight: 400; color: var(--text-secondary); line-height: 1.333;">${fileSize} MB</div>
                             </div>
-                            <button class="delete-button" onclick="deleteFile(${index})" ${isUploading ? 'disabled' : ''} style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(255, 72, 66, 0.08); border: none; border-radius: 6px; cursor: pointer; height: 40px; color: #B72136; font-size: 18px; font-weight: 700; ${isUploading ? 'opacity: 0.5; cursor: not-allowed;' : ''}">
-                                <div class="delete-icon" style="width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;">
+                            <button class="delete-button" onclick="deleteFile(${index})" ${isUploading ? 'disabled' : ''} ${isUploading ? 'style="opacity: 0.5; cursor: not-allowed;"' : ''}>
+                                <div class="delete-icon">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                        <path d="M2.5 5h15l-1.25 12.5c-.1 1-.9 1.75-1.9 1.75H5.65c-1 0-1.8-.75-1.9-1.75L2.5 5z" stroke="#B72136" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M7.5 2.5h5l.5 2.5h-6l.5-2.5z" stroke="#B72136" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M8.75 8.75v5" stroke="#B72136" stroke-width="1.5" stroke-linecap="round"/>
-                                        <path d="M11.25 8.75v5" stroke="#B72136" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M2.5 5h15l-1.25 12.5c-.1 1-.9 1.75-1.9 1.75H5.65c-1 0-1.8-.75-1.9-1.75L2.5 5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7.5 2.5h5l.5 2.5h-6l.5-2.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M8.75 8.75v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M11.25 8.75v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                                     </svg>
                                 </div>
                                 刪除
